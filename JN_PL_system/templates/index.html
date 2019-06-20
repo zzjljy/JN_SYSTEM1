@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>hello</h1>
+<input type="text" class="input1">
+<input type="text" class="input2">
+<input type="text" class="input3">
+<button type="button" onclick="test1()">确定</button>
+</body>
+<script type="text/javascript">
+    // function test1(){
+    //     var data = {
+    //         'ydxz': $(".input1").val(),
+    //         'ssmc': $(".input2").val(),
+    //     }
+    //     console.log(data)
+    //     $.ajax({
+    //         type:"post",
+    //         url:"/jn_api/v1.0/JN/JN_KG/search_info/",
+    //         data:JSON.stringify(data),
+    //         contentType: "application/json",
+    //         success:function(data){
+    //             alert(JSON.stringify(data));
+    //             console.log(data)
+    //             // for(var attr in data){
+    //             //     for(var i=0;i<data[attr].features.length;i++){
+    //             //         alert(JSON.stringify(data[attr].features[i]))
+    //             //     }
+    //             // }
+    //
+    //         },
+    //         error:function(xhr, type){
+    //
+    //         }
+    //     })
+    // }
+    function test1() {
+        var x = $(".input1").val()
+        var y = $(".input2").val()
+        var z = $(".input3").val()
+        $.get("/jn_api/v1.0/JN/JNDL/MapServer/tile/" +x+"/"+y+"/"+z+"/", function (data) {
+            console.log(data)
+        });
+    }
+</script>
+</html>
