@@ -18,10 +18,10 @@ html = Blueprint('html', __name__)
 #     response = make_response(current_app.send_static_file(file_name))
 #     return response
 
-from .mongo_insert import yx_insert
+
 @html.route('/')
 def index():
-    yx_insert()
+    '''试验'''
     return render_template('index.html')
 
 
