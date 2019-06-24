@@ -1,31 +1,44 @@
 from flask import Blueprint, request, jsonify
 from .. import py_connection
 from JN_PL_system.utils.response_code import RET
+from werkzeug.datastructures import CombinedMultiDict, MultiDict
 
 kg = Blueprint('kg', __name__)
 
 
-@kg.route('/JN/JN_KG/search_info/', methods=['POST'])
-def kg_info_find():
+@kg.route('/JN/JN_KG/search_info/<string:ydxz>/<string:ssmc>/', methods=['GET'])
+def kg_info_find(ydxz, ssmc):
     '''
     控规信息查询，根据用地类型和、设施名称
     :return:
     '''
     # 获取参数
-    kg_data = request.get_json('data')
-    # 判断参数是否存在
-    if not kg_data:
+    ydxz = ydxz
+    ssmc = ssmc
+    print(ydxz, ssmc)
+    if not(ydxz, ssmc):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
-    params = []
-    for k, v in kg_data.items():
-        params.append(v)
-    # 原生语句进行控规信息查询
     try:
-        data = py_connection.kg_find_land(params[0], params[1])
+        data = py_connection.kg_find_land(ydxz, ssmc)
+        print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+    # kg_data = request.get_json('data')
+    # # 判断参数是否存在
+    # if not kg_data:
+    #     return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    # params = []
+    # for k, v in kg_data.items():
+    #     params.append(v)
+    # # 原生语句进行控规信息查询
+    # try:
+    #     data = py_connection.kg_find_land(params[0], params[1])
+    #     return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+    # except Exception as e:
+    #     print(e)
+    #     return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
 
 
 @kg.route('/JN/JN_KG/search_element/', methods=['POST'])

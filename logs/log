@@ -794,3 +794,157 @@ WARNING _internal.py:122  * Debugger is active!
 INFO _internal.py:122  * Debugger PIN: 428-360-021
 INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 INFO _internal.py:122 127.0.0.1 - - [20/Jun/2019 15:35:39] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:34:06] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:34:08] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:34:40] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22学校教育用地%22,%22ssmc%22:%22幼儿园%22} HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:35:52] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:37:39] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 09:42:05] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:12:59] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:15:20] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:16:15] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:16:49] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:17:17] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:18:01] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:18:23] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:19:15] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:21:15] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:25:24] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:25:28] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 10:26:36] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 11:34:42] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 11:38:55] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 404 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 11:40:53] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 11:44:38] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22%22} HTTP/1.1" 404 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 16:46:04] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 16:46:04] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 16:48:31] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/二类居住用地/// HTTP/1.1" 404 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:09:24] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:09:26] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:39:42] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:40:28] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:40:33] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:42:06] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:44:44] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:44:59] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地// HTTP/1.1" 404 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:49:55] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地// HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:50:11] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:50:21] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地/ HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:52:52] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地/ HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:53:02] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:53:42] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:53:47] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地/ HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:57:22] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [21/Jun/2019 17:57:33] "GET /jn_api/v1.0/JN/JN_KG/search_info/一类工业用地/ HTTP/1.1" 404 -

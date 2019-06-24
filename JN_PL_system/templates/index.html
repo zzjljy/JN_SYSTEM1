@@ -11,8 +11,24 @@
 <input type="text" class="input2">
 <input type="text" class="input3">
 <button type="button" onclick="test1()">确定</button>
+<button type="button" onclick="test2()">确定2</button>
 </body>
 <script type="text/javascript">
+    function test2(){
+        var ydxz = $(".input1").val()
+        var ssmc = $(".input2").val()
+        console.log(ssmc)
+
+        $.ajax({
+            type:"get",
+            url:"/jn_api/v1.0/JN/JN_KG/search_info/"+ydxz+"/"+ssmc+"/",
+            contentType:"application/json",
+            success:function (data) {
+                console.log(data)
+
+            }
+        })
+    }
     // function test1(){
     //     var data = {
     //         'ydxz': $(".input1").val(),

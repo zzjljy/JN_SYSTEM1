@@ -21,7 +21,6 @@ html = Blueprint('html', __name__)
 
 @html.route('/')
 def index():
-    '''试验'''
     return render_template('index.html')
 
 
