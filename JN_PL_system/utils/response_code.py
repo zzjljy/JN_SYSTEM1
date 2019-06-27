@@ -13,7 +13,7 @@ class RET:
     REQERR = '4201'
     IPERR = '4202'
     THIRDERR = '4301'
-    IOERR = '4302'
+    DATAERR = '4302'
     SERVERERR = '4500'
     UNKOWNERR = '4501'
 
@@ -33,7 +33,7 @@ error_map = {
     RET.REQERR: '非法请求或请求次数受限',
     RET.IPERR: 'IP受限',
     RET.THIRDERR: '第三方系统错误',
-    RET.IOERR: '文件读写错误',
+    RET.DATAERR: '数据为空',
     RET.SERVERERR: '内部错误',
     RET.UNKOWNERR: '未知错误',
 }

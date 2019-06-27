@@ -100,6 +100,51 @@ def kg_find_elements(keys):
     return finally_result
 
 
+def kg_find_elements_rjl(param1, param2):
+    '''
+    控规要素查询，容积率和绿地率的查询
+    容积率分五个层次，(0,1]，(1,2]...(4,]
+    :return:符合条件的json数据
+    '''
+    db_connection()
+    try:
+        s_rjl = param1
+        b_rjl = param2
+        if s_rjl == 4:
+            sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' order by gid asc" % s_rjl
+        else:
+            sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' and rjl<='%s' order by gid asc" % (s_rjl, b_rjl)
+        cur.execute(sql)
+        results = cur.fetchall()
+        finally_result = kg_data_to_dict(results)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    # print(finally_result)
+    return finally_result
+
+
+def kg_find_elements_ldl(param1, param2):
+    '''
+    控规要素查询，绿地率的查询
+    绿地率分十个层次，(0,10],(10,20]...(90,100]
+    :return:符合条件的json数据
+    '''
+    s_ldl = param1
+    b_ldl = param2
+    db_connection()
+    try:
+        sql = "select ST_AsText(geom), * from kg1 where ldl>'%s' and ldl<='%s' order by gid asc" % (s_ldl, b_ldl)
+        cur.execute(sql)
+        results = cur.fetchall()
+        results_i = kg_data_to_dict(results)
+        finally_result = results_i
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
 def kg_search_land_info(*args):
     '''
     控规信息地块查询，点击地块，返回地块信息，
@@ -352,7 +397,7 @@ def gkq_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from yjgkq1 where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsText(geom),* from yjgkq_gyq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
@@ -376,7 +421,7 @@ def gkq_update_info_big(*args):
     ydlb = args[2]
     db_connection()
     try:
-        sql = "update yjgkq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
+        sql = "update yjgkq_gyq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -414,7 +459,7 @@ def gkq_update_info_small(*args):
         return 'ERROR'
     db_connection()
     try:
-        sql = "update yjgkq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
+        sql = "update yjgkq_gyq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -440,8 +485,9 @@ def gkq_find_info_custom(polygon):
     try:
         # polygon = '112670 275350,112686 275383,112680 275360,112670 275350'
         # polygon = '117596 277966,117613 277920,117596 277966'
+        # polygon = '113703.85683807955 277786.66251242213, 113888.0072063803 277748.562436222, 113712.32352167959 277600.3954732214, 113703.85683807955 277786.66251242213'
         polygon = polygon
-        sql = "select ST_AsText(geom), * from yjgkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsText(geom), * from yjgkq_gyq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         # for item in result:
@@ -470,7 +516,7 @@ def gkq_custom_transformation_big(gid, ydxz, ydlb):
         ydxz = ydxz
         ydlb = ydlb
         for gid_item in gid:
-            sql = "update yjgkq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
+            sql = "update yjgkq_gyq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
             cur.execute(sql)
         coon.commit()
         print('类型转换成功')
@@ -494,16 +540,18 @@ def gkq_custom_transformation_small(gid, ydlb):
     ydlb = ydlb
     if ydlb == '一般耕地' or ydlb == '基本农田':
         ydxz = '田'
-    elif ydlb == '湖泊水库' or ydlb == '坑塘沟渠' or ydlb == '河道':
+    elif ydlb == '湖泊水库' or ydlb == '坑塘沟渠' or ydlb == '河道' or ydlb == '现状水域':
         ydxz = '水'
     elif ydlb == '市政设施':
         ydxz = '市政设施'
-    elif ydlb == '其他生态用地':
+    elif ydlb == '其他生态用地' or ydlb == '现状绿地':
         ydxz = '草'
     elif ydlb == '可造林区域（农用用地）' or ydlb == '现状林地' or ydlb == '可造林区域（清退用地）':
         ydxz = '林'
     elif ydlb == '保留村庄':
         ydxz = '保留村庄'
+    elif ydlb == '工业园区':
+        ydxz = '工业园区'
     elif ydlb == '交通设施':
         ydxz = '交通设施'
     else:
@@ -511,9 +559,10 @@ def gkq_custom_transformation_small(gid, ydlb):
     db_connection()
     try:
         for item_gid in gid:
-            sql = "update yjgkq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
+            sql = "update yjgkq_gyq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
             cur.execute(sql)
         coon.commit()
+        msg = 'OK'
     except Exception as e:
         print('类型转换失败%s' % e)
         msg = 'ERROR'
@@ -529,15 +578,15 @@ def sum_of_area():
     '''
     db_connection()
     try:
-        sql = "select distinct ydxz from yjgkq"
+        sql = "select distinct ydxz from yjgkq_gyq"
         cur.execute(sql)
         ydxz_results = cur.fetchall()
         area_dict = {}
         for ydxz_item in ydxz_results:
-            a_sql = "select sum(shape_area) from yjgkq where ydxz='%s'" % ydxz_item[0]
+            a_sql = "select sum(shape_area) from yjgkq_gyq where ydxz='%s'" % ydxz_item[0]
             cur.execute(a_sql)
             area_dict[ydxz_item[0]] = cur.fetchall()[0][0]
-        cur.execute("select sum(shape_area) from yjgkq")
+        cur.execute("select sum(shape_area) from yjgkq_gyq")
         area_total = cur.fetchall()[0][0]
         percentage_area = {}
         for k, v in area_dict.items():
@@ -546,7 +595,7 @@ def sum_of_area():
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
-    return percentage_area
+    return percentage_area, area_dict
 
 
 '''-------------------------------'''
@@ -566,11 +615,17 @@ if __name__ == '__main__':
     '''
     MULTIPOLYGON ZM (((122869.566101074 278635.717102051 0 -1.79769e+308,122871.94654105 278638.225935593 0 -1.79769e+308,122871.990112305 278638.268758138 0 -1.79769e+308,122877.6796875 278644.258300781 0 -1.79769e+308,122884.00411377 278637.275671387 0 -1.79769e+308,122888.662902832 278632.121704102 0 -1.79769e+308,122872.873474121 278614.760498047 0 -1.79769e+308,122853.772094727 278595.501098633 0 -1.79769e+308,122837.82989502 278583.874328613 0 -1.79769e+308,122795.057128906 278544.600097656 0 -1.79769e+308,122800.015075684 278538.182495117 0 -1.79769e+308,122778.40667076 278516.452521098 0 -1.79769e+308,122776.622680664 278514.658508301 0 -1.79769e+308,122771.520679931 278510.690321743 0 -1.79769e+308,122768.942696082 278508.685292328 0 -1.79769e+308,122763.110745895 278504.157953583 0 -1.79769e+308,122755.722290039 278514.718078613 0 -1.79769e+308,122753.487930884 278517.978811172 0 -1.79769e+308,122756.219482422 278520.210083008 0 -1.79769e+308,122749.581695557 278527.022216797 0 -1.79769e+308,122752.689858718 278529.257018641 0 -1.79769e+308,122779.962402344 278548.868347168 0 -1.79769e+308,122779.846384905 278548.999096837 0 -1.79769e+308,122735.851654053 278598.136489868 0 -1.79769e+308,122736.636105719 278598.89298374 0 -1.79769e+308,122783.451388192 278643.96549332 0 -1.79769e+308,122825.293273926 278684.246704102 0 -1.79769e+308,122859.602686258 278646.64579092 0 -1.79769e+308)))
     '''
-    s = gkq_find_info_custom('122859 278646,122869 278635, 122871 278638, 122859 278646')
-    print(s)
+    # s = gkq_find_info_custom('122859 278646,122869 278635, 122871 278638, 122859 278646')
+    # print(s)
     # msg = gkq_custom_transformation_big([1, 2, '600'], '水', '河道')
     # print(msg)
     # s = sum_of_area()
     # s = kg_find_land('一类工业用地', '')
     # print(s)
+    # s = kg_find_elements_rjl(4,10)
+    # print(s)
+    # s = kg_find_elements_ldl(0, 10)
+    # print(s)
+    s = gkq_find_info_custom('1')
+    print(s)
     pass

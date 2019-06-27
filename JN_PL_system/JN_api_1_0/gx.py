@@ -5,16 +5,13 @@ from JN_PL_system.utils.response_code import RET
 gx = Blueprint('gx', __name__)
 
 
-@gx.route('/JN/JN_GX/gx_plot_pipeline/', methods=['POST'])
-def gx_plot_pipeline():
+@gx.route('/JN/JN_GX/gx_plot_pipeline/<land_gid>/', methods=['GET'])
+def gx_plot_pipeline(land_gid):
     '''
     根据地块的唯一标识符gid查找地块周围的管线
     :return:
     '''
-    kg_data = request.get_json('data')
-    if not kg_data:
-        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
-    gid = kg_data.get('gid')
+    gid = land_gid
     try:
         data = py_connection.gx_plot_pipeline(gid)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)

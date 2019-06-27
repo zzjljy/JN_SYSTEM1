@@ -35,7 +35,7 @@ def insert_to_yigkq(table_list):
     '''
     db_connection()
     for item_table in table_list:
-        input(item_table)
+        # input(item_table)
         sql = "select objectid_1, ydxz, ydlb, yddm, ydmc, shape_leng, shape_area, geom from %s" % item_table
         cur.execute(sql)
         results = cur.fetchall()

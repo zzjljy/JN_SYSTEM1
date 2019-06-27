@@ -12,20 +12,117 @@
 <input type="text" class="input3">
 <button type="button" onclick="test1()">确定</button>
 <button type="button" onclick="test2()">确定2</button>
+<button type="button" onclick="test3()">绿地率</button>
+<button type="button" onclick="test4()">一级管控区小类转换</button>
+<button type="button" onclick="test5()">一级管控区自定义查询</button>
+<button type="button" onclick="test6()">管控区面积比重查询</button>
+<button type="button" onclick="test7()">管控区自定义大类型转化</button>
+<button type="button" onclick="test8()">管控区自定义小类型查询</button>
 </body>
 <script type="text/javascript">
+    function test8() {
+        data = {
+            'meta_datas':[{'meta_ydxz': '田', 'meta_shape_area':"72887.5912934"},{'meta_ydxz':'保留村庄', 'meta_shape_area':109419.097530}],
+            'ydlb':'工业园区'
+        }
+        $.ajax({
+            type:"GET",
+            url:"/jn_api/v1.0/JN/JN_GKQ/gkq_custom_convert_small/",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function(data){
+                console.log(data)
+            }
+        })
+
+    }
+    function test7() {
+        data = {
+            'gid': [1, 2],
+            'ydxz':'水',
+            'ydlb':'河道'
+        }
+        $.ajax({
+            type:"PUT",
+            url:"/jn_api/v1.0/JN/JN_GKQ/gkq_custom_transformation_big/",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function(data){
+                console.log(data)
+            }
+        })
+
+    }
+    function test6(){
+        $.get("/jn_api/v1.0/JN/JN_GKQ/gkq_area_search/", function (data) {
+            console.log(data)
+
+        });
+    }
+    function test5() {
+        data = {
+            'rings': [
+                [113703.85683807955,277786.66251242213],
+                [113888.0072063803,277748.562436222],
+                [113712.32352167959,277600.3954732214],
+                [113703.85683807955,277786.66251242213]
+            ]
+        }
+        $.ajax({
+            type:"GET",
+            url:"/jn_api/v1.0/JN/JN_GKQ/gkq_find_info_custom/",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function(data){
+                console.log(data)
+            }
+        })
+
+    }
     function test2(){
         var ydxz = $(".input1").val()
         var ssmc = $(".input2").val()
-        console.log(ssmc)
-
+        // $.get("/jn_api/v1.0/JN/JN_KG/search_info/" +ydxz+"/"+ssmc+"/", function (data) {
+        //     console.log(data)
+        // });
+        data = {
+            "ydxz": ydxz,
+            "ssmc": ssmc
+        }
         $.ajax({
-            type:"get",
-            url:"/jn_api/v1.0/JN/JN_KG/search_info/"+ydxz+"/"+ssmc+"/",
+           type:"GET",
+            url:"/jn_api/v1.0/JN/JN_KG/search_info1/",
+            data:JSON.stringify(data),
             contentType:"application/json",
-            success:function (data) {
+            success:function(data){
                 console.log(data)
-
+            }
+        })
+    }
+    function test3() {
+        var x = $(".input1").val();
+        var y = $(".input2").val();
+            $.get("/jn_api/v1.0/JN/JN_KG/search_element/LDL/" +x+"/"+ y+"/", function (data) {
+            console.log(data)
+        });
+    }
+    function test4() {
+        // var ydxz = $(".input1").val();
+        // var ydlb = $(".input2").val();
+        // var gid = $(".input3").val();
+        var data = {
+            "gid": 1,
+            "ydlb": '交通设施',
+            "meta_shape_area": 254349.070523,
+            "meta_ydxz":'保留村庄'
+        }
+        $.ajax({
+            type:"GET",
+            url:"/jn_api/v1.0/JN/JN_GKQ/gkq_convert_info_small/",
+            data:JSON.stringify(data),
+            contentType:"application/json",
+            success:function(data){
+                console.log(data)
             }
         })
     }
