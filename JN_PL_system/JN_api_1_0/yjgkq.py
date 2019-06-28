@@ -8,7 +8,7 @@ gkq = Blueprint('gkq', __name__)
 @gkq.route('/JN/JN_GKQ/gkq_find_info/<float:point_x>/<float:point_y>/', methods=['POST'])
 def gkq_find_info(point_x, point_y):
     '''
-    单个管控区范围test
+    单个管控区范围test1
     根据点坐标返回点坐标所在小范围的管控区的信息
     :return:
     '''
