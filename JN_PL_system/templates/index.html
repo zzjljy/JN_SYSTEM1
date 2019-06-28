@@ -10,14 +10,14 @@
 <input type="text" class="input1">
 <input type="text" class="input2">
 <input type="text" class="input3">
-<button type="button" onclick="test1()">确定</button>
-<button type="button" onclick="test2()">确定2</button>
-<button type="button" onclick="test3()">绿地率</button>
-<button type="button" onclick="test4()">一级管控区小类转换</button>
-<button type="button" onclick="test5()">一级管控区自定义查询</button>
-<button type="button" onclick="test6()">管控区面积比重查询</button>
-<button type="button" onclick="test7()">管控区自定义大类型转化</button>
-<button type="button" onclick="test8()">管控区自定义小类型查询</button>
+<button type="button" onclick="test1()">瓦片数据</button>
+<button type="button" onclick="test2()" disabled="disabled">确定2</button>
+<button type="button" onclick="test3()" disabled="disabled">绿地率</button>
+<button type="button" onclick="test4()" disabled="disabled">一级管控区小类转换</button>
+<button type="button" onclick="test5()" disabled="disabled">一级管控区自定义查询</button>
+<button type="button" onclick="test6()" disabled="disabled">管控区面积比重查询</button>
+<button type="button" onclick="test7()" disabled="disabled">管控区自定义大类型转化</button>
+<button type="button" onclick="test8()" disabled="disabled">管控区自定义小类型查询</button>
 </body>
 <script type="text/javascript">
     function test8() {
@@ -153,10 +153,31 @@
     //     })
     // }
     function test1() {
-        var x = $(".input1").val()
-        var y = $(".input2").val()
-        var z = $(".input3").val()
-        $.get("/jn_api/v1.0/JN/JNDL/MapServer/tile/" +x+"/"+y+"/"+z+"/", function (data) {
+        $.get("/jn_api/v1.0/JN/JNDL/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNYX/MapServer/tile/" +0+"/"+5+"/"+2+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNDLHDM/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNDY/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNGX/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNKG/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+        $.get("/jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/" +0+"/"+5+"/"+3+"/", function (data) {
+            console.log(data)
+        });
+         $.get("/jn_api/v1.0/JN/JNZJ/MapServer/tile/" +0+"/"+6+"/"+3+"/", function (data) {
             console.log(data)
         });
     }
