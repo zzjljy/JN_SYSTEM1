@@ -1839,3 +1839,79 @@ INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 10:21:18] "GET /jn_api/v1.0/JN/
 INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 10:21:18] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
 INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 10:21:18] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
 INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 10:21:18] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 15:03:56] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 15:04:23] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\mongo_insert.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 15:06:11] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:34:11] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:34:13] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514/276346/ HTTP/1.1" 404 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:35:58] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:36:00] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514/276346/ HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:37:23] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:37:25] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 16:37:29] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:13:15] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:13:17] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:14:23] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:14:24] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:15:31] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:15:34] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 500 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:30:39] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:30:41] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:31:25] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:31:27] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:49:09] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [28/Jun/2019 17:49:11] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat

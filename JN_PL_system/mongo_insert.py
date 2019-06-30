@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from .models import DL, DLHDM, DY, GKQXZ, KG, YJGKQ, ZJ, GX, YX
+from .models import DL, DLHDM, DY, GKQXZ, KG, YJGKQ, ZJ, GX, YX, DLHDM_IMG
 
 
 client = MongoClient(host='127.0.0.1', port=27017)
@@ -67,3 +67,10 @@ def yx_insert():
     results = collection.find()
     for item in results:
         YX(x=item['x'], y=item['y'], z=item['z'], image=item['image']).save()
+
+
+def dlhdm_img_insert():
+    collection = database.DLHDM_image
+    results = collection.find()
+    for item in results:
+        DLHDM_IMG(image_objectid=item['image_objectid'], image=item['image_content']).save()

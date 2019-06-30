@@ -11,6 +11,7 @@
 <input type="text" class="input2">
 <input type="text" class="input3">
 <button type="button" onclick="test1()">瓦片数据</button>
+<button type="button" onclick="test9()">道路数据及横断面</button>
 <button type="button" onclick="test2()" disabled="disabled">确定2</button>
 <button type="button" onclick="test3()" disabled="disabled">绿地率</button>
 <button type="button" onclick="test4()" disabled="disabled">一级管控区小类转换</button>
@@ -20,6 +21,12 @@
 <button type="button" onclick="test8()" disabled="disabled">管控区自定义小类型查询</button>
 </body>
 <script type="text/javascript">
+    function test9() {
+        $.get("/jn_api/v1.0/JN/JN_DL/dl_search_road/"+117514.12+"/"+276346.45+"/", function (data, data1) {
+            console.log(data)
+            console.log(data1)
+        });
+    }
     function test8() {
         data = {
             'meta_datas':[{'meta_ydxz': '田', 'meta_shape_area':"72887.5912934"},{'meta_ydxz':'保留村庄', 'meta_shape_area':109419.097530}],

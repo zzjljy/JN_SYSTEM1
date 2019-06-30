@@ -1,6 +1,7 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response, redirect, url_for
 from .. import py_connection
 from JN_PL_system.utils.response_code import RET
+from ..models import DLHDM_IMG
 
 dl = Blueprint('dl', __name__)
 
@@ -54,7 +55,30 @@ def dl_search_road_info(point_x, point_y):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_search_road_info(x, y)
+        # 调道路横断面图片
+        image_objectid = int(data.get('features')[0].get('attributes').get('objectid'))
+        redirect(url_for('dl.dl_dlhdm_image', image_objectid=image_objectid))
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+    except Exception as e:
+        print(e)
+        return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+
+
+@dl.route('/JN/JN_DLHDM/dl_search_road_image/<int:image_objectid>/', methods=['GET'])
+def dl_dlhdm_image(image_objectid):
+    '''
+    某条道路的道路横断面图片
+    :param image_objectid:
+    :return:
+    '''
+    image_objectid = image_objectid
+    try:
+        dlhdm_img = DLHDM_IMG.objects(image_objectid=image_objectid).first()
+        image = dlhdm_img['image']
+        # print(image)
+        response = make_response(image)
+        response.headers['Content-Type'] = 'image/png'
+        return response
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')

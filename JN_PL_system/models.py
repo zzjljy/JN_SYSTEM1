@@ -49,3 +49,9 @@ class YJGKQ(BaseModel, db.Document):
 
 class ZJ(BaseModel, db.Document):
     __doc__ = 'JN_ZJ'
+
+
+class DLHDM_IMG(db.Document):
+    __doc__ = 'JN_DLHDM_IMG'
+    image_objectid = db.IntField()
+    image = db.BinaryField()
