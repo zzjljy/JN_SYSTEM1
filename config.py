@@ -43,8 +43,17 @@ class ProductionConfig(Config):
     """生产环境下的配置类"""
     LOGGIONG_LEVEL = logging.WARNING
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:123456@127.0.0.1/my_first_postgis'
-    MONGODB_HOST = "127.0.0.1"
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:123456@127.0.0.1/my_first_postgis'
+    # 配置postgresql数据库
+    POSTGRES_PORT = '5432'
+    POSTGRES_HOST = 'localhost'
+    POSTGRES_DB = 'my_first_postgis'
+    POSTGRES_USER = 'postgres'
+    POSTGRES_PASSWORD = '123456'
+    # Mongo配置
+    MONGODB_PORT = 27017
+    MONGODB_HOST = "192.168.18.9"
+    MONGODB_DB = "JN_SYSTEM"
 
 
 configs = {

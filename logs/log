@@ -1974,3 +1974,186 @@ INFO _internal.py:122 127.0.0.1 - - [30/Jun/2019 22:36:38] "GET /jn_api/v1.0/JN/
 INFO _internal.py:122 127.0.0.1 - - [30/Jun/2019 22:37:07] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
 INFO _internal.py:122 127.0.0.1 - - [30/Jun/2019 22:37:07] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
 INFO _internal.py:122 127.0.0.1 - - [30/Jun/2019 22:37:34] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:38] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:48:41] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:00] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:49:59] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:00] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:04] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:50:27] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\index_page.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:51:05] "GET / HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 10:51:19] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:17] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:24] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:37] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:05:46] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:55:21] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:55:22] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:01] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\config.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:05] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:39] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:44] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:56:45] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\config.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:57:17] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:57:49] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:58:19] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:58:50] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 11:59:20] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:24] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:25] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 13:44:32] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:13] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:14:17] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:43] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:44] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:16:45] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:18:58] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:18:58] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:19:00] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\manage.py', reloading
+INFO _internal.py:122  * Restarting with stat
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:55] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:20:56] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:44] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:49] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:54] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/0 HTTP/1.1" 404 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)

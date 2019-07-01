@@ -117,7 +117,7 @@ def get_jngkqxz_tile(x, y, z):
     try:
         dl_tile = GKQXZ.objects(x=x, y=y, z=z).first()
         image = dl_tile['image']
-        print(image)
+        # print(image)
         response = make_response(image)
         response.headers['Content-Type'] = 'image/png'
         return response
@@ -213,7 +213,7 @@ def get_jnzj_tile(x, y, z):
     try:
         dl_tile = ZJ.objects(x=x, y=y, z=z).first()
         image = dl_tile['image']
-        print(image)
+        # print(image)
         response = make_response(image)
         response.headers['Content-Type'] = 'image/png'
         return response

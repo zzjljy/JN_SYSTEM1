@@ -16,11 +16,6 @@ app.config['MONGODB_SETTINGS'] = {
 }
 db = MongoEngine(app)
 
-# 创建mongo对象
-client = MongoClient(host=Config.MONGODB_HOST, port=Config.MONGODB_PORT)
-# 创建 postgresql对象
-# db_coon = psycopg2.connect(database=Config.POSTGRES_DB, user=Config.POSTGRES_USER, password=Config.MONGODB_PASSWORD, host=Config.POSTGRES_HOST, port=Config.POSTGRES_PORT)
-
 
 def setup_logging(level):
     logging.basicConfig(level=level)
@@ -38,6 +33,7 @@ def create_app(config_name):
     """创建flask应用app对象"""
     setup_logging(configs[config_name].LOGGING_LEVEL)
 
+    # db = MongoEngine(app)
 
     # 从配置对象中为APP设置配置信息
     app.config.from_object(configs[config_name])
