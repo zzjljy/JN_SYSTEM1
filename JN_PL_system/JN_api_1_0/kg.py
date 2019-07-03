@@ -29,11 +29,10 @@ def kg_info_find(ydxz, ssmc):
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
 
 
-@kg.route('/JN/JN_KG/search_info1/', methods=['GET'])
+@kg.route('/JN/JN_KG/search_info/', methods=['GET'])
 def kg_info_find1():
     '''
     控规信息查询，根据用地类型和、设施名称
-    第二个参数为空的时候还没有解决
     以json方式传数据
     :return:
     '''

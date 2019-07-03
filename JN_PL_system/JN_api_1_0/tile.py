@@ -6,7 +6,7 @@ from ..models import YJGKQ, DL, DLHDM, DY, GKQXZ, GX, KG, ZJ, YX
 tile = Blueprint('tile', __name__)
 
 
-@tile.route('JN/JNYX/MapServer/tile/<int:z>/<int:x>/<int:y>/', methods=['GET'])
+@tile.route('/JN/JNYX/MapServer/tile/<int:z>/<int:x>/<int:y>/', methods=['GET'])
 def get_jnyx_tile(x, y, z):
     '''
     请求津南影像瓦片数据,
@@ -17,7 +17,7 @@ def get_jnyx_tile(x, y, z):
     :return:
     '''
     if not(x, y, z):
-        return jsonify(errno=RET.PARAMERR, errmsg='参数错误')
+        return jsonify(errno=4103, errmsg='参数错误')
     try:
         dl_tile = YX.objects(x=x, y=y, z=z).first()
         image = dl_tile['image']
@@ -27,7 +27,7 @@ def get_jnyx_tile(x, y, z):
         return response
     except Exception as e:
         print(e)
-        return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+        return jsonify(errorno=4001, errmsg='查询数据库错误')
 
 
 @tile.route('/JN/JNDL/MapServer/tile/<int:z>/<int:x>/<int:y>/', methods=['GET'])

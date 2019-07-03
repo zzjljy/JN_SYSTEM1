@@ -9,7 +9,7 @@ cur = ''
 def db_connection():
     try:
         global coon, cur
-        coon = psycopg2.connect(database="my_first_postgis", user="postgres", password='123456', host='localhost',
+        coon = psycopg2.connect(database="JN_SYSTEM", user="postgres", password='123456', host='localhost',
                                 port='5432')
         cur = coon.cursor()
         print('connected successful!!')

@@ -19,7 +19,7 @@ class Config(object):
     # 配置postgresql数据库
     POSTGRES_PORT = '5432'
     POSTGRES_HOST = 'localhost'
-    POSTGRES_DB = 'my_first_postgis'
+    POSTGRES_DB = 'JN_SYSTEM'
     POSTGRES_USER = 'postgres'
     POSTGRES_PASSWORD = '123456'
     # Mongo配置
@@ -47,7 +47,7 @@ class ProductionConfig(Config):
     # 配置postgresql数据库
     POSTGRES_PORT = '5432'
     POSTGRES_HOST = 'localhost'
-    POSTGRES_DB = 'my_first_postgis'
+    POSTGRES_DB = 'JN_SYSTEM'
     POSTGRES_USER = 'postgres'
     POSTGRES_PASSWORD = '123456'
     # Mongo配置

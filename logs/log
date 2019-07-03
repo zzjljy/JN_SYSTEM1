@@ -2157,3 +2157,237 @@ INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:47] "GET /jn_api/v1.0/JN/
 INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:49] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
 INFO _internal.py:122 127.0.0.1 - - [01/Jul/2019 14:21:54] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/0 HTTP/1.1" 404 -
 INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:51] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:51] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:28:55] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:14] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:14] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 10:29:55] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:50:54] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:50:56] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22%22,%22ssmc%22:%22%22} HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:52:07] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:52:09] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22%22,%22ssmc%22:%22%22} HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:53:06] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:53:10] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22%22,%22ssmc%22:%22%22} HTTP/1.1" 400 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:57:23] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 11:57:26] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22%22,%22ssmc%22:%22%22} HTTP/1.1" 400 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:29:20] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:29:26] "GET /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:30:53] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:30:55] "GET /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:34:59] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:35:01] "GET /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:42:58] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:43:00] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:44:43] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:44:44] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:45:07] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:45:08] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 400 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:45:51] "GET / HTTP/1.1" 200 -
+ERROR app.py:1761 Exception on /jn_api/v1.0/JN/JN_KG/search_info1/ [POST]
+Traceback (most recent call last):
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\new_py_project\JN_PM_system\JN_PL_system\JN_api_1_0\kg.py", line 45, in kg_info_find1
+    data_dict = json.loads(data_dict)
+UnboundLocalError: local variable 'data_dict' referenced before assignment
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:45:53] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 500 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:47:58] "GET / HTTP/1.1" 200 -
+ERROR app.py:1761 Exception on /jn_api/v1.0/JN/JN_KG/search_info1/ [POST]
+Traceback (most recent call last):
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\new_py_project\JN_PM_system\JN_PL_system\JN_api_1_0\kg.py", line 45, in kg_info_find1
+    data_dict = json.loads(data_dict)
+UnboundLocalError: local variable 'data_dict' referenced before assignment
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:47:59] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:48:20] "GET / HTTP/1.1" 200 -
+ERROR app.py:1761 Exception on /jn_api/v1.0/JN/JN_KG/search_info1/ [POST]
+Traceback (most recent call last):
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\new_py_project\JN_PM_system\evne\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\new_py_project\JN_PM_system\JN_PL_system\JN_api_1_0\kg.py", line 45, in kg_info_find1
+    data_dict = json.loads(data_dict)
+UnboundLocalError: local variable 'data_dict' referenced before assignment
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:48:21] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:49:47] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:49:48] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:50:35] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:50:36] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 400 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:51:21] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:51:23] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 14:52:10] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:36:12] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:36:14] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:38:29] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:38:39] "POST /jn_api/v1.0/JN/JN_KG/search_info1/ HTTP/1.1" 500 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:39:21] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:39:23] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 400 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\kg.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:41:03] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:41:04] "GET /jn_api/v1.0/JN/JN_KG/search_info1/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:50:39] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 15:50:40] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 16:30:50] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 16:30:51] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 16:40:17] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 16:40:21] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:53:17] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:53:18] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:53:22] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\config.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:56:46] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:56:47] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:56:47] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:57:15] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:57:18] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:57:18] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\JN_api_1_0\\dl.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:58:42] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:58:45] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
+INFO _internal.py:122 127.0.0.1 - - [02/Jul/2019 17:58:45] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:10] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:11] "GET /favicon.ico HTTP/1.1" 404 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNDL/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNYX/MapServer/tile/0/5/2/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNDLHDM/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNDY/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNGKQXZ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNGX/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNKG/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNYJGKQ/MapServer/tile/0/5/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:15] "GET /jn_api/v1.0/JN/JNZJ/MapServer/tile/0/6/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:28] "GET /jn_api/v1.0/JN/JN_DL/dl_search_road/117514.12/276346.45/ HTTP/1.1" 302 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:28] "GET /jn_api/v1.0/JN/JN_DLHDM/dl_search_road_image/1/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:24:34] "GET /jn_api/v1.0/JN/JN_KG/search_info/?{%22ydxz%22:%22一类工业用地%22,%22ssmc%22:%22公厕%22} HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:26:14] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:26:16] "GET /jn_api/v1.0/JN/JN_KG/search_element/LDL/2/3/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:27:02] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:27:04] "GET /jn_api/v1.0/JN/JN_KG/search_element/LDL/80/90/ HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:28:15] "GET / HTTP/1.1" 200 -
+ERROR yjgkq.py:161 local variable 'percentage_area' referenced before assignment
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:28:17] "GET /jn_api/v1.0/JN/JN_GKQ/gkq_area_search/ HTTP/1.1" 200 -
+INFO _internal.py:122  * Detected change in 'D:\\new_py_project\\JN_PM_system\\JN_PL_system\\py_connection.py', reloading
+INFO _internal.py:122  * Restarting with stat
+WARNING _internal.py:122  * Debugger is active!
+INFO _internal.py:122  * Debugger PIN: 428-360-021
+INFO _internal.py:122  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:29:30] "GET / HTTP/1.1" 200 -
+INFO _internal.py:122 127.0.0.1 - - [03/Jul/2019 11:29:32] "GET /jn_api/v1.0/JN/JN_GKQ/gkq_area_search/ HTTP/1.1" 200 -

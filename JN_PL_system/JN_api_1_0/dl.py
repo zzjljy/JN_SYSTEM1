@@ -55,6 +55,7 @@ def dl_search_road_info(point_x, point_y):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_search_road_info(x, y)
+        print(data)
         # 调道路横断面图片
         image_objectid = int(data.get('features')[0].get('attributes').get('objectid'))
         return redirect(url_for('dl.dl_dlhdm_image', image_objectid=image_objectid))

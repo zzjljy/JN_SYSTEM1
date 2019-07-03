@@ -4,7 +4,7 @@ from flask_migrate import Migrate, MigrateCommand
 from JN_PL_system import create_app, db
 
 
-app = create_app('production')
+app = create_app('develop')
 
 Migrate(app, db)
 manager = Manager(app)

@@ -12,11 +12,11 @@
 <input type="text" class="input3">
 <button type="button" onclick="test1()">瓦片数据</button>
 <button type="button" onclick="test9()">道路数据及横断面</button>
-<button type="button" onclick="test2()" disabled="disabled">确定2</button>
-<button type="button" onclick="test3()" disabled="disabled">绿地率</button>
+<button type="button" onclick="test2()" >控规</button>
+<button type="button" onclick="test3()" >绿地率</button>
 <button type="button" onclick="test4()" disabled="disabled">一级管控区小类转换</button>
 <button type="button" onclick="test5()" disabled="disabled">一级管控区自定义查询</button>
-<button type="button" onclick="test6()" disabled="disabled">管控区面积比重查询</button>
+<button type="button" onclick="test6()" >管控区面积比重查询</button>
 <button type="button" onclick="test7()" disabled="disabled">管控区自定义大类型转化</button>
 <button type="button" onclick="test8()" disabled="disabled">管控区自定义小类型查询</button>
 </body>
@@ -87,28 +87,26 @@
 
     }
     function test2(){
-        var ydxz = $(".input1").val()
-        var ssmc = $(".input2").val()
         // $.get("/jn_api/v1.0/JN/JN_KG/search_info/" +ydxz+"/"+ssmc+"/", function (data) {
         //     console.log(data)
         // });
-        data = {
-            "ydxz": ydxz,
-            "ssmc": ssmc
+        data1 = {
+            "ydxz":'一类工业用地',
+            "ssmc": '公厕'
         }
         $.ajax({
            type:"GET",
-            url:"/jn_api/v1.0/JN/JN_KG/search_info1/",
-            data:JSON.stringify(data),
             contentType:"application/json",
+            url:"/jn_api/v1.0/JN/JN_KG/search_info/",
+            data:JSON.stringify(data1),
             success:function(data){
                 console.log(data)
             }
         })
     }
     function test3() {
-        var x = $(".input1").val();
-        var y = $(".input2").val();
+        var x = 80;
+        var y = 90;
             $.get("/jn_api/v1.0/JN/JN_KG/search_element/LDL/" +x+"/"+ y+"/", function (data) {
             console.log(data)
         });

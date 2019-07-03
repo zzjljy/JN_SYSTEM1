@@ -47,9 +47,9 @@ def kg_find_land(param1, param2):
     # try:
     # 从数据库查询数据
     if kg_ssmc == '':
-        sql = "select ST_AsText(geom), * from kg1 where ydxz='%s' order by gid asc" % kg_ydxz
+        sql = "select ST_AsText(geom), * from kg where ydxz='%s' order by gid asc" % kg_ydxz
     else:
-        sql = "select ST_AsText(geom), *  from kg1 where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (kg_ydxz, kg_ssmc)
+        sql = "select ST_AsText(geom), *  from kg where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (kg_ydxz, kg_ssmc)
     cur.execute(sql)
     results = cur.fetchall()
     finally_results = kg_data_to_dict(results)
@@ -74,7 +74,7 @@ def kg_find_elements(keys):
         if keys == '绿地率':
             param = [(0, 10), (10, 20), (20, 30), (30, 40), (40, 50), (50, 60), (60, 70), (70, 80), (80, 90), (90, 100)]
             for i in range(len(param)):
-                sql = "select ST_AsText(geom), * from kg1 where ldl>'%s' and ldl<='%s' order by gid asc" % (param[i][0], param[i][1])
+                sql = "select ST_AsText(geom), * from kg where ldl>'%s' and ldl<='%s' order by gid asc" % (param[i][0], param[i][1])
                 # sql = "select ST_AsText(geom), * from kg1 where ldl>'%s' and ldl<='%s'" % (10, 20)
                 cur.execute(sql)
                 results = cur.fetchall()
@@ -86,9 +86,9 @@ def kg_find_elements(keys):
             param = [(0, 1), (1, 2), (2, 3), (3, 4), (4,)]
             for i in range(len(param)):
                 if i == 4:
-                    sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' order by gid asc" % param[i][0]
+                    sql = "select ST_AsText(geom), * from kg where rjl>'%s' order by gid asc" % param[i][0]
                 else:
-                    sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' and rjl<='%s' order by gid asc" % (param[i][0], param[i][1])
+                    sql = "select ST_AsText(geom), * from kg where rjl>'%s' and rjl<='%s' order by gid asc" % (param[i][0], param[i][1])
                 cur.execute(sql)
                 results = cur.fetchall()
                 results_i = kg_data_to_dict(results)
@@ -111,9 +111,9 @@ def kg_find_elements_rjl(param1, param2):
         s_rjl = param1
         b_rjl = param2
         if s_rjl == 4:
-            sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' order by gid asc" % s_rjl
+            sql = "select ST_AsText(geom), * from kg where rjl>'%s' order by gid asc" % s_rjl
         else:
-            sql = "select ST_AsText(geom), * from kg1 where rjl>'%s' and rjl<='%s' order by gid asc" % (s_rjl, b_rjl)
+            sql = "select ST_AsText(geom), * from kg where rjl>'%s' and rjl<='%s' order by gid asc" % (s_rjl, b_rjl)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = kg_data_to_dict(results)
@@ -134,7 +134,7 @@ def kg_find_elements_ldl(param1, param2):
     b_ldl = param2
     db_connection()
     try:
-        sql = "select ST_AsText(geom), * from kg1 where ldl>'%s' and ldl<='%s' order by gid asc" % (s_ldl, b_ldl)
+        sql = "select ST_AsText(geom), * from kg where ldl>'%s' and ldl<='%s' order by gid asc" % (s_ldl, b_ldl)
         cur.execute(sql)
         results = cur.fetchall()
         results_i = kg_data_to_dict(results)
@@ -155,7 +155,7 @@ def kg_search_land_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsText(geom), * from kg1 where ST_Within('POINT(%s %s)', ST_AsText(geom)) order by gid asc" % (x, y)
+        sql = "select ST_AsText(geom), * from kg where ST_Within('POINT(%s %s)', ST_AsText(geom)) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = kg_data_to_dict(results)
@@ -371,7 +371,7 @@ def gx_plot_pipeline(gid):
     gid = gid
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from public.gx1 where ST_DWithin((select geom from public.kg1 where " \
+        sql = "select ST_AsText(geom),* from public.gx where ST_DWithin((select geom from public.kg1 where " \
               "gid='%s'),geom,25.0) order by gid asc" % gid
         cur.execute(sql)
         results = cur.fetchall()
@@ -397,7 +397,7 @@ def gkq_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from yjgkq_gyq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsText(geom),* from yjgkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
@@ -421,7 +421,7 @@ def gkq_update_info_big(*args):
     ydlb = args[2]
     db_connection()
     try:
-        sql = "update yjgkq_gyq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
+        sql = "update yjgkq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -459,7 +459,7 @@ def gkq_update_info_small(*args):
         return 'ERROR'
     db_connection()
     try:
-        sql = "update yjgkq_gyq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
+        sql = "update yjgkq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -487,7 +487,7 @@ def gkq_find_info_custom(polygon):
         # polygon = '117596 277966,117613 277920,117596 277966'
         # polygon = '113703.85683807955 277786.66251242213, 113888.0072063803 277748.562436222, 113712.32352167959 277600.3954732214, 113703.85683807955 277786.66251242213'
         polygon = polygon
-        sql = "select ST_AsText(geom), * from yjgkq_gyq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsText(geom), * from yjgkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         # for item in result:
@@ -516,7 +516,7 @@ def gkq_custom_transformation_big(gid, ydxz, ydlb):
         ydxz = ydxz
         ydlb = ydlb
         for gid_item in gid:
-            sql = "update yjgkq_gyq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
+            sql = "update yjgkq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
             cur.execute(sql)
         coon.commit()
         print('类型转换成功')
@@ -559,7 +559,7 @@ def gkq_custom_transformation_small(gid, ydlb):
     db_connection()
     try:
         for item_gid in gid:
-            sql = "update yjgkq_gyq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
+            sql = "update yjgkq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
             cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -578,15 +578,15 @@ def sum_of_area():
     '''
     db_connection()
     try:
-        sql = "select distinct ydxz from yjgkq_gyq"
+        sql = "select distinct ydxz from yjgkq"
         cur.execute(sql)
         ydxz_results = cur.fetchall()
         area_dict = {}
         for ydxz_item in ydxz_results:
-            a_sql = "select sum(shape_area) from yjgkq_gyq where ydxz='%s'" % ydxz_item[0]
+            a_sql = "select sum(shape_area) from yjgkq where ydxz='%s'" % ydxz_item[0]
             cur.execute(a_sql)
             area_dict[ydxz_item[0]] = cur.fetchall()[0][0]
-        cur.execute("select sum(shape_area) from yjgkq_gyq")
+        cur.execute("select sum(shape_area) from yjgkq")
         area_total = cur.fetchall()[0][0]
         percentage_area = {}
         for k, v in area_dict.items():
