@@ -8,7 +8,7 @@ def dlhdm_image_into_mongo():
     :return:
     '''
     dlhdm_image_path = r'C:\Users\95768\Desktop\横断面图片'
-    coon = MongoClient('127.0.0.1', 27017)
+    coon = MongoClient('0.0.0.0', 27017)
     db = coon.JN_SYSTEM
     collection_name = db.DLHDM_image
     image_dir = os.walk(dlhdm_image_path)

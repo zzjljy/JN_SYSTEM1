@@ -272,7 +272,7 @@ def dl_search_road_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin('POINT(%s %s)',ST_AsText(geom),10.0) order by gid asc" % (x, y)
+        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin('POINT(%s %s)',ST_AsText(geom),0.5) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = dl_data_to_dict(results)
