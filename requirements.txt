@@ -1,8 +1,0 @@
-Flask
-Flask-SQLAlchemy
-psycopg2
-Flask-Blueprint
-pymongo
-flask_script
-flask_migrate
-flask_mongoengine

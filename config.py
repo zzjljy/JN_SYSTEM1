@@ -56,11 +56,24 @@ class ProductionConfig(Config):
     MONGODB_DB = "JN_SYSTEM"
 
 
+class DockerConfig(ProductionConfig):
+    @classmethod
+    def init_app(cls, app):
+        ProductionConfig.init_app(app)
+        # 将日志输出到stder
+        import logging
+        from logging import StreamHandler
+        file_handler = StreamHandler()
+        file_handler.setLevel(logging.info)
+        app.logger.addHandler(file_handler)
+
+
 configs = {
     'default': Config,
     'develop': DevelopConfig,
     'unittest': UnitTestConfig,
-    'production': ProductionConfig
+    'production': ProductionConfig,
+    'docker': DockerConfig,
 }
 
 if __name__ == '__main__':

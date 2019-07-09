@@ -86,6 +86,7 @@ def kg_element_find_ldl(ldl_min, ldl_max):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.kg_find_elements_ldl(s_ldl, b_ldl)
+        print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)

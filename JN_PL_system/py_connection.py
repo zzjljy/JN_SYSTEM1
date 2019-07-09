@@ -12,7 +12,7 @@ def db_connection():
         global coon, cur
         # coon = psycopg2.connect(database="my_first_postgis", user="postgres", password='123456', host='localhost',
         #                         port='5432')
-        # 以后用下面这个
+        # 以后用下面这个p
         # coon = db_coon
         coon = psycopg2.connect(database=Config.POSTGRES_DB, user=Config.POSTGRES_USER, password=Config.POSTGRES_PASSWORD, host=Config.POSTGRES_HOST,
                                 port=Config.POSTGRES_PORT)
