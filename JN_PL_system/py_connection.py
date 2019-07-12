@@ -36,20 +36,21 @@ def coon_close():
 '''-----------------控规地块----------------------'''
 
 
-def kg_find_land(param1, param2):
+def kg_find_land(*args):
     '''
     控规地块查询，主要用地类型/设施名称查询
     :return:符合条件的dict数据
     '''
     db_connection()
-    kg_ydxz = param1
-    kg_ssmc = param2
-    # try:
-    # 从数据库查询数据
-    if kg_ssmc == '':
-        sql = "select ST_AsText(geom), * from kg where ydxz='%s' order by gid asc" % kg_ydxz
+    if len(args) > 1:
+        kg_ydxz = args[0]
+        kg_ssmc = args[1]
+        sql = "select ST_AsText(geom), *  from kg where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (
+        kg_ydxz, kg_ssmc)
     else:
-        sql = "select ST_AsText(geom), *  from kg where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (kg_ydxz, kg_ssmc)
+        kg_ydxz = args[0]
+        sql = "select ST_AsText(geom), * from kg where ydxz='%s' order by gid asc" % kg_ydxz
+
     cur.execute(sql)
     results = cur.fetchall()
     finally_results = kg_data_to_dict(results)
@@ -200,21 +201,49 @@ def kg_data_to_dict(data):
                         p = re.compile(r'[(][(][(](.*)[)][)][)]', re.S)
                         # 列表类型的一条数据
                         s1 = re.findall(p, str1)
+                        # print(s1)
                         # print('---------')
                         if ')),((' in s1[0]:
                             s2 = s1[0].split(')),((')
+                            # print(type(s2), s2)
+                            for s3 in s2:
+                                # print(s3)
+                                if '),(' not in s3:
+                                    coor_list = []
+                                    s4 = s3.split(",")
+                                    for st in s4:
+                                        s4 = st.split(" ")
+                                        coor_list.append([float(s4[0]), float(s4[1])])
+                                    item_dict["geometry"]["rings"].append(coor_list)
+                                else:
+                                    s4 = s3.split('),(')
+                                    for s5 in s4:
+                                        s6 = s5.split(",")
+                                        coor_list = []
+                                        for st in s6:
+                                            s6 = st.split(" ")
+                                            coor_list.append([float(s6[0]), float(s6[1])])
+                                        item_dict["geometry"]["rings"].append(coor_list)
+                                #     s2 = s1[0].split(')),((')
+
                         elif '),(' in s1[0]:
                             s2 = s1[0].split('),(')
-                            # print(len(s2), s2)
+                            for s3 in s2:
+                                coor_list = []
+                                s3 = s3.split(',')
+                                for st in s3:
+                                    s4 = st.split(" ")
+                                    coor_list.append([float(s4[0]), float(s4[1])])
+                                item_dict["geometry"]["rings"].append(coor_list)
                         else:
                             s2 = s1
-                        for s3 in s2:
-                            coor_list = []
-                            s3 = s3.split(',')
-                            for st in s3:
-                                s4 = st.split(" ")
-                                coor_list.append([float(s4[0]), float(s4[1])])
-                            item_dict["geometry"]["rings"].append(coor_list)
+                            for s3 in s2:
+                                coor_list = []
+                                s3 = s3.split(',')
+                                for st in s3:
+                                    s4 = st.split(" ")
+                                    coor_list.append([float(s4[0]), float(s4[1])])
+                                item_dict["geometry"]["rings"].append(coor_list)
                 item_dict = item_dict
                 results["features"].append(item_dict)
             # print(json.dumps(results, ensure_ascii=False))
@@ -272,7 +301,7 @@ def dl_search_road_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin('POINT(%s %s)',ST_AsText(geom),0.5) order by gid asc" % (x, y)
+        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin('POINT(%s %s)',ST_AsText(geom), 2) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = dl_data_to_dict(results)
@@ -397,7 +426,7 @@ def gkq_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from yjgkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsText(geom),* from gkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
@@ -421,7 +450,7 @@ def gkq_update_info_big(*args):
     ydlb = args[2]
     db_connection()
     try:
-        sql = "update yjgkq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
+        sql = "update gkq set ydxz='%s',ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -443,23 +472,25 @@ def gkq_update_info_small(*args):
     ydlb = args[1]
     if ydlb == '一般耕地' or ydlb == '基本农田':
         ydxz = '田'
-    elif ydlb == '湖泊水库' or ydlb == '坑塘沟渠' or ydlb == '河道':
+    elif ydlb == '湖泊水库' or ydlb == '坑塘沟渠' or ydlb == '河道' or ydlb == '现状水域':
         ydxz = '水'
     elif ydlb == '市政设施':
         ydxz = '市政设施'
-    elif ydlb == '其他生态用地':
+    elif ydlb == '其他生态用地' or ydlb == '现状绿地':
         ydxz = '草'
     elif ydlb == '可造林区域（农用用地）' or ydlb == '现状林地' or ydlb == '可造林区域（清退用地）':
         ydxz = '林'
     elif ydlb == '保留村庄':
         ydxz = '保留村庄'
+    elif ydlb == '工业园区':
+        ydxz = '工业园区'
     elif ydlb == '交通设施':
         ydxz = '交通设施'
     else:
         return 'ERROR'
     db_connection()
     try:
-        sql = "update yjgkq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
+        sql = "update gkq set ydlb='%s',ydxz='%s' where gid='%s'" % (ydlb, ydxz, gid)
         cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -483,11 +514,10 @@ def gkq_find_info_custom(polygon):
     '''
     db_connection()
     try:
-        # polygon = '112670 275350,112686 275383,112680 275360,112670 275350'
-        # polygon = '117596 277966,117613 277920,117596 277966'
-        # polygon = '113703.85683807955 277786.66251242213, 113888.0072063803 277748.562436222, 113712.32352167959 277600.3954732214, 113703.85683807955 277786.66251242213'
-        polygon = polygon
-        sql = "select ST_AsText(geom), * from yjgkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        # polygon = '115924.61838536352 281700.1978399141,115963.565125079 281700.1978399141,115963.565125079 281640.5077189189,115924.61838536352 281640.5077189189,115924.61838536352 281700.1978399141'
+        # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
+        # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
+        sql = "select ST_AsText(geom), * from gkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         # for item in result:
@@ -516,7 +546,7 @@ def gkq_custom_transformation_big(gid, ydxz, ydlb):
         ydxz = ydxz
         ydlb = ydlb
         for gid_item in gid:
-            sql = "update yjgkq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
+            sql = "update gkq set ydxz='%s' ,ydlb='%s' where gid='%s'" % (ydxz, ydlb, gid_item)
             cur.execute(sql)
         coon.commit()
         print('类型转换成功')
@@ -559,7 +589,7 @@ def gkq_custom_transformation_small(gid, ydlb):
     db_connection()
     try:
         for item_gid in gid:
-            sql = "update yjgkq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
+            sql = "update gkq set ydxz='%s', ydlb='%s' where gid='%s'" % (ydxz, ydlb, item_gid)
             cur.execute(sql)
         coon.commit()
         msg = 'OK'
@@ -578,15 +608,15 @@ def sum_of_area():
     '''
     db_connection()
     try:
-        sql = "select distinct ydxz from yjgkq"
+        sql = "select distinct ydxz from gkq"
         cur.execute(sql)
         ydxz_results = cur.fetchall()
         area_dict = {}
         for ydxz_item in ydxz_results:
-            a_sql = "select sum(shape_area) from yjgkq where ydxz='%s'" % ydxz_item[0]
+            a_sql = "select sum(shape_area) from gkq where ydxz='%s'" % ydxz_item[0]
             cur.execute(a_sql)
             area_dict[ydxz_item[0]] = cur.fetchall()[0][0]
-        cur.execute("select sum(shape_area) from yjgkq")
+        cur.execute("select sum(shape_area) from gkq")
         area_total = cur.fetchall()[0][0]
         percentage_area = {}
         for k, v in area_dict.items():
@@ -626,8 +656,11 @@ if __name__ == '__main__':
     # print(s)
     # s = kg_find_elements_ldl(0, 10)
     # print(s)
-    # s = gkq_find_info_custom('1')
+    # s = gkq_find_info_custom1('1')
     # print(s)
-    s = dl_search_road_info(117514, 276346)
+    # s = dl_search_road_info(117514, 276346)
+    # s = gkq_find_info(106813.14432421184,278812.2142569655)
+    # s = gkq_find_info(113850.49293056593, 270824.6366815064)
+    s = gkq_find_info_custom('116433.26752061576 281414.5202492552,116486.18429311595 281414.5202492552,116486.18429311595 281403.5135670346,116433.26752061576 281403.5135670346,116433.26752061576 281414.5202492552')
     print(s)
     pass

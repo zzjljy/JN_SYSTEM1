@@ -20,7 +20,8 @@ def get_jnyx_tile(x, y, z):
         return jsonify(errno=4103, errmsg='参数错误')
     try:
         dl_tile = YX.objects(x=x, y=y, z=z).first()
-        image = dl_tile['image']
+        if dl_tile != None:
+            image = dl_tile['image']
         # print(image)
         response = make_response(image)
         response.headers['Content-Type'] = 'image/png'
@@ -211,12 +212,14 @@ def get_jnzj_tile(x, y, z):
     if not(x, y, z):
         return jsonify(errno=RET.PARAMERR, errmsg='参数错误')
     try:
-        dl_tile = ZJ.objects(x=x, y=y, z=z).first()
-        image = dl_tile['image']
-        # print(image)
-        response = make_response(image)
-        response.headers['Content-Type'] = 'image/png'
-        return response
+        zj_tile = ZJ.objects(x=x, y=y, z=z).first()
+        if zj_tile == None:
+            return jsonify(errorno=RET.PARAMERR, errmsg='瓦片参数错误')
+        else:
+            image = zj_tile['image']
+            response = make_response(image)
+            response.headers['Content-Type'] = 'image/png'
+            return response
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')

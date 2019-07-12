@@ -2,52 +2,38 @@ from flask import Blueprint, request, jsonify
 from .. import py_connection
 from JN_PL_system.utils.response_code import RET
 import json
-from werkzeug.datastructures import CombinedMultiDict, MultiDict
 
 kg = Blueprint('kg', __name__)
 
 
-@kg.route('/JN/JN_KG/search_info/<string:ydxz>/<string:ssmc>/', methods=['GET'])
-def kg_info_find(ydxz, ssmc):
-    '''
-    控规信息查询，根据用地类型和、设施名称
-    第二个参数为空的时候还没有解决
-    :return:
-    '''
-    # 获取参数
-    ydxz = ydxz
-    ssmc = ssmc
-    # print(ydxz, ssmc)
-    if not(ydxz, ssmc):
-        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
-    try:
-        data = py_connection.kg_find_land(ydxz, ssmc)
-        # print(data)
-        return jsonify(errorno=RET.OK, errmsg='成功', data=data)
-    except Exception as e:
-        print(e)
-        return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
-
-
 @kg.route('/JN/JN_KG/search_info/', methods=['GET'])
-def kg_info_find1():
+def kg_info_find():
     '''
     控规信息查询，根据用地类型和、设施名称
-    以json方式传数据
+    以json方式传数据 ImmutableMultiDict([('key', '{"ydxz":"一类工业用地","ssmc":"公厕"}')])
     :return:
     '''
     # 获取参数
     data = request.args
+    print(data)
     for k, v in data.to_dict().items():
-        data_dict = k
+        data_dict = v
+        # input(data_dict)
     data_dict = json.loads(data_dict)
+
+    print(data_dict)
     ydxz = data_dict.get('ydxz')
     ssmc = data_dict.get('ssmc')
+    print(ydxz)
+    print(ssmc)
     if not(ydxz, ssmc):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
-        data = py_connection.kg_find_land(ydxz, ssmc)
-        print(data)
+        if ssmc == None:
+            data = py_connection.kg_find_land(ydxz)
+        else:
+            data = py_connection.kg_find_land(ydxz, ssmc)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -86,7 +72,7 @@ def kg_element_find_ldl(ldl_min, ldl_max):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.kg_find_elements_ldl(s_ldl, b_ldl)
-        print(data)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -100,12 +86,13 @@ def kg_search_land_info(point_x, point_y):
     :return:
     '''
     # 获取参数
-    x = point_x
-    y = point_y
+    x = float(point_x)
+    y = float(point_y)
     if not(x, y):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.kg_search_land_info(x, y)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)

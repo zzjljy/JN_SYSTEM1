@@ -5,7 +5,7 @@ import json
 gkq = Blueprint('gkq', __name__)
 
 
-@gkq.route('/JN/JN_GKQ/gkq_find_info/<float:point_x>/<float:point_y>/', methods=['POST'])
+@gkq.route('/JN/JN_GKQ/gkq_find_info/<float:point_x>/<float:point_y>/', methods=['GET'])
 def gkq_find_info(point_x, point_y):
     '''
     单个管控区范围test1
@@ -19,6 +19,7 @@ def gkq_find_info(point_x, point_y):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.gkq_find_info(x, y)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -74,7 +75,7 @@ def gkq_update_info_small():
     '''
     # 获取参数
     if request.method == 'PUT':
-        gkq_data = request.get_json('data')
+        gkq_data = json.loads(request.get_json('data').get('key'))
         gid = gkq_data.get('gid')
         ydlb = gkq_data.get('ydlb')
         if not(gkq_data):
@@ -96,7 +97,7 @@ def gkq_update_info_small():
         # 点击地块转换，查看转换后的结果，但是数据库中并没有保存转换后的结果，只是查看转换后的比例
         gkq_data = request.args
         for k, v in gkq_data.to_dict().items():
-            data = k
+            data = v
         data = json.loads(data)
         if not(data) or len(data) < 4:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
@@ -173,8 +174,9 @@ def gkq_find_info_custom():
     :return:
     '''
     gkq_data = request.args
+    print(gkq_data)
     for k, v in gkq_data.to_dict().items():
-        data = k
+        data = v
     rings = json.loads(data)
     points_list = rings.get('rings')
     if not rings:
@@ -193,7 +195,11 @@ def gkq_find_info_custom():
             else:
                 point = '%s %s,' % (points_list[i][0], points_list[i][1])
             polygon += point
+        print('-----------------------')
+        print(type(polygon), polygon)
+        print('-----------------------------')
         data = py_connection.gkq_find_info_custom(polygon)
+        # print('数据', data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -246,12 +252,16 @@ def gkq_custom_transformation_small():
     :return:
     '''
     if request.method == 'PUT':
-        gkq_data = request.get_json('data')
+        print('put方法')
+        print(request.get_json('data'))
+        gkq_data = json.loads(request.get_json('data').get('key'))
+        print(gkq_data)
         if not gkq_data:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
         if len(gkq_data) < 2:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
         gid = gkq_data.get('gid')
+        print(type(gid), len(gid), gid)
         ydlb = gkq_data.get('ydlb')
         if len(gid) == 0 or ydlb == '' or type(gid) != list:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
@@ -268,8 +278,9 @@ def gkq_custom_transformation_small():
         # 多个地块选择后进行类型转换展示，但是并不保存修改结果到数据，仅仅只是为了展示结果看
         gkq_data = request.args
         for k, v in gkq_data.to_dict().items():
-            data = k
+            data = v
         data = json.loads(data)
+        print(11111, data)
         if not(data) or len(data) < 2:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
         meta_datas = data.get('meta_datas')

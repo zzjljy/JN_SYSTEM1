@@ -32,7 +32,9 @@ def dl_dlmc_find(dlmc):
     '''
     # 获取参数
     dlmc = dlmc
-    if not(dlmc):
+    print(dlmc)
+    print('-------------')
+    if dlmc == None:
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_find_mc(dlmc)
@@ -55,8 +57,7 @@ def dl_search_road_info(point_x, point_y):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_search_road_info(x, y)
-        print(data)
-
+        # print(data)
         # 调道路横断面图片
         # image_objectid = int(data.get('features')[0].get('attributes').get('objectid'))
         # print(image_objectid)
@@ -78,9 +79,10 @@ def dl_dlhdm_image(image_objectid):
     try:
         dlhdm_img = DLHDM_IMG.objects(image_objectid=image_objectid).first()
         image = dlhdm_img['image']
-        # print(image)
         response = make_response(image)
-        response.headers['Content-Type'] = 'image/png'
+        # print(image)
+        response.headers['Content-Type'] = "image/png"
+        # response.setContentType("text/html; charset=utf-8")
         return response
     except Exception as e:
         print(e)

@@ -50,6 +50,21 @@ def insert_to_yigkq(table_list):
     close()
 
 
+def insert_gyq_to_gkq():
+    db_connection()
+    sql = "select objectid_1, objectid, ydxz, ydlb, yddm, ydmc, shape_leng, shape_area, geom from gongyequ"
+    cur.execute(sql)
+    results = cur.fetchall()
+    i = 0
+    for item in results:
+        print(item)
+        insert_sql = "insert into gkq(objectid_1,objectid, ydxz, ydlb, yddm, ydmc, shape_leng, shape_area,geom) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        cur.execute(insert_sql, [item[0], item[1], item[2], item[3], item[4], item[5], item[6], item[7], item[8]])
+    coon.commit()
+
+    close()
+
+
 if __name__ == '__main__':
     table_list = [
         'gongyequ',
@@ -68,5 +83,6 @@ if __name__ == '__main__':
         'xianzhuangshuiyu',
         'yibangengdi'
     ]
-    insert_to_yigkq(table_list)
+    # insert_to_yigkq(table_list)
+    insert_gyq_to_gkq()
     pass
