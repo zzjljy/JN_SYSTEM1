@@ -1,7 +1,5 @@
 import logging
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from pymongo import MongoClient
 from config import Config, configs
 from logging.handlers import RotatingFileHandler
 from JN_PL_system.utils.commons import RegexConverter
@@ -72,5 +70,13 @@ def create_app(config_name):
     # tile瓦片
     from .JN_api_1_0.tile import tile
     app.register_blueprint(tile, url_prefix='/jn_api/v1.0')
+
+    # 单元
+    from .JN_api_1_0.dy import dy
+    app.register_blueprint(dy, url_prefix='/jn_api/v1.0')
+
+    # 图斑
+    from .JN_api_1_0.tb import tb
+    app.register_blueprint(tb, url_prefix='/jn_api/v1.0')
 
     return app

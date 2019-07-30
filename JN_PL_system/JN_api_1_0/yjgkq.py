@@ -195,9 +195,9 @@ def gkq_find_info_custom():
             else:
                 point = '%s %s,' % (points_list[i][0], points_list[i][1])
             polygon += point
-        print('-----------------------')
-        print(type(polygon), polygon)
-        print('-----------------------------')
+        # print('-----------------------')
+        # print(type(polygon), polygon)
+        # print('-----------------------------')
         data = py_connection.gkq_find_info_custom(polygon)
         # print('数据', data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)

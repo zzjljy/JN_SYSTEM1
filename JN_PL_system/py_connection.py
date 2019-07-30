@@ -101,7 +101,7 @@ def kg_find_elements(keys):
     return finally_result
 
 
-def kg_find_elements_rjl(param1, param2):
+def kg_find_elements_rjl(param1):
     '''
     控规要素查询，容积率和绿地率的查询
     容积率分五个层次，(0,1]，(1,2]...(4,]
@@ -109,40 +109,45 @@ def kg_find_elements_rjl(param1, param2):
     '''
     db_connection()
     try:
-        s_rjl = param1
-        b_rjl = param2
-        if s_rjl == 4:
-            sql = "select ST_AsText(geom), * from kg where rjl>'%s' order by gid asc" % s_rjl
+        s_rjl = str(param1)[0]
+        if s_rjl == '4':
+            sql = "select ST_AsText(geom) from kg where rjl like '%4%%' or rjl like '%5%%'"
         else:
-            sql = "select ST_AsText(geom), * from kg where rjl>'%s' and rjl<='%s' order by gid asc" % (s_rjl, b_rjl)
+            sql = "select ST_AsText(geom) from kg where rjl like '%s%%'" % s_rjl
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = kg_data_to_dict(results)
+        finally_result = kg_data_to_dict_1(results)
     except Exception as e:
         print('查询失败%s' % e)
+        finally_result = 'ERROR'
     coon_close()
     # print(finally_result)
     return finally_result
 
 
-def kg_find_elements_ldl(param1, param2):
+def kg_find_elements_ldl(param1):
     '''
     控规要素查询，绿地率的查询
     绿地率分十个层次，(0,10],(10,20]...(90,100]
     :return:符合条件的json数据
     '''
-    s_ldl = param1
-    b_ldl = param2
+    s_ldl = str(param1)[0]
     db_connection()
     try:
-        sql = "select ST_AsText(geom), * from kg where ldl>'%s' and ldl<='%s' order by gid asc" % (s_ldl, b_ldl)
+        if s_ldl == '0':
+            sql = "select ST_AsText(geom) from kg where ldl ='1' or ldl ='0' or ldl ='2' or ldl ='3' or \
+            ldl = '4' or ldl = '5' or ldl = '6' or ldl = '7' or ldl = '8' or ldl = '9'"
+        else:
+            sql = "select ST_AsText(geom) from kg where ldl like'%s%%' and ldl !='%s'" % (s_ldl, s_ldl)
         cur.execute(sql)
         results = cur.fetchall()
-        results_i = kg_data_to_dict(results)
+        results_i = kg_data_to_dict_1(results)
         finally_result = results_i
     except Exception as e:
         print('查询失败%s' % e)
-    coon_close()
+        finally_result == 'ERROR'
+        # finally_result = results_i = 'ERROR'
+    # coon_close()
     return finally_result
 
 
@@ -244,6 +249,78 @@ def kg_data_to_dict(data):
                                     s4 = st.split(" ")
                                     coor_list.append([float(s4[0]), float(s4[1])])
                                 item_dict["geometry"]["rings"].append(coor_list)
+                item_dict = item_dict
+                results["features"].append(item_dict)
+            # print(json.dumps(results, ensure_ascii=False))
+        return results
+    except Exception as e:
+        print(e)
+    # return results
+
+
+def kg_data_to_dict_1(data):
+    '''
+    绿地率，容积率
+    :param data:
+    :return:
+    '''
+    try:
+        results = {}
+        results["features"] = []
+        if len(data) != 0:
+            for i in range(len(data)):
+                # 每一条数据是一个字典
+                item_dict = {}
+                item_dict["geometry"] = {}
+                # 判断有几个环
+                item_dict["geometry"]["rings"] = []
+                str1 = data[i][0]
+                p = re.compile(r'[(][(][(](.*)[)][)][)]', re.S)
+                # 列表类型的一条数据
+                s1 = re.findall(p, str1)
+                # print(s1)
+                # print('---------')
+                if ')),((' in s1[0]:
+                    s2 = s1[0].split(')),((')
+                    # print(type(s2), s2)
+                    for s3 in s2:
+                        # print(s3)
+                        if '),(' not in s3:
+                            coor_list = []
+                            s4 = s3.split(",")
+                            for st in s4:
+                                s4 = st.split(" ")
+                                coor_list.append([float(s4[0]), float(s4[1])])
+                            item_dict["geometry"]["rings"].append(coor_list)
+                        else:
+                            s4 = s3.split('),(')
+                            for s5 in s4:
+                                s6 = s5.split(",")
+                                coor_list = []
+                                for st in s6:
+                                    s6 = st.split(" ")
+                                    coor_list.append([float(s6[0]), float(s6[1])])
+                                item_dict["geometry"]["rings"].append(coor_list)
+                        #     s2 = s1[0].split(')),((')
+
+                elif '),(' in s1[0]:
+                    s2 = s1[0].split('),(')
+                    for s3 in s2:
+                        coor_list = []
+                        s3 = s3.split(',')
+                        for st in s3:
+                            s4 = st.split(" ")
+                            coor_list.append([float(s4[0]), float(s4[1])])
+                        item_dict["geometry"]["rings"].append(coor_list)
+                else:
+                    s2 = s1
+                    for s3 in s2:
+                        coor_list = []
+                        s3 = s3.split(',')
+                        for st in s3:
+                            s4 = st.split(" ")
+                            coor_list.append([float(s4[0]), float(s4[1])])
+                        item_dict["geometry"]["rings"].append(coor_list)
                 item_dict = item_dict
                 results["features"].append(item_dict)
             # print(json.dumps(results, ensure_ascii=False))
@@ -628,6 +705,128 @@ def sum_of_area():
     return percentage_area, area_dict
 
 
+'''---------------单元----------------'''
+
+
+def dy_find_info_custom(polygon):
+    '''
+    根据polygon来查询范围内有哪些单元
+    :param polygon: 由坐标点组成的polygon
+    :return: 由单元信息组成的dict
+    '''
+    # 114246.43169079 274304.627395291,113634.68309079 274240.472595291,113611.75459079 274674.206295291,113601.78349079 274858.469995291,114202.25409079 274921.423395291,114246.43169079 274304.627395291
+    polygon = polygon
+    db_connection()
+    try:
+        sql = "select ST_AsText(geom), * from danyuan where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        cur.execute(sql)
+        result = cur.fetchall()
+        # for item in result:
+        #     print(item)
+        finally_result = kg_data_to_dict(result)
+        # print(finally_result)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
+'''--------------图斑-----------------'''
+
+
+def tb_find_info_custom(polygon):
+    '''
+    图斑自定义转换
+    框选区域进行相交查询，将得到的结果返回
+    如果就两个点，则用四个点构成有个polygon
+    :param args:
+    :return:
+    '''
+    db_connection()
+    try:
+        polygon = polygon
+        sql = "select ST_AsText(geom), * from tuban where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        cur.execute(sql)
+        result = cur.fetchall()
+        finally_result = kg_data_to_dict(result)
+        # print(finally_result)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
+def tb_find_info(*args):
+    '''
+    点击图斑坐标
+    由点坐标查询那一块的信息
+    :param args:
+    :return:
+    '''
+    x = args[0]
+    y = args[1]
+    db_connection()
+    try:
+        sql = "select ST_AsText(geom),* from tuban where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        cur.execute(sql)
+        results = cur.fetchall()
+        # for item in results:
+        #     print(item)
+        finally_result = kg_data_to_dict(results)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
+'''------------------------------'''
+
+
+def czc_find_info_custom(polygon):
+    '''
+    城镇村自定义转换
+    框选区域进行相交查询，将得到的结果返回
+    如果就两个点，则用四个点构成有个polygon
+    :param args:
+    :return:
+    '''
+    db_connection()
+    try:
+        polygon = polygon
+        sql = "select ST_AsText(geom), * from czc where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        cur.execute(sql)
+        result = cur.fetchall()
+        finally_result = kg_data_to_dict(result)
+        # print(finally_result)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
+def czc_find_info(*args):
+    '''
+    点击城镇村坐标
+    由点坐标查询那一块的信息
+    :param args:
+    :return:
+    '''
+    x = args[0]
+    y = args[1]
+    db_connection()
+    try:
+        sql = "select ST_AsText(geom),* from czc where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        cur.execute(sql)
+        results = cur.fetchall()
+        # for item in results:
+        #     print(item)
+        finally_result = kg_data_to_dict(results)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
 '''-------------------------------'''
 
 
@@ -661,6 +860,8 @@ if __name__ == '__main__':
     # s = dl_search_road_info(117514, 276346)
     # s = gkq_find_info(106813.14432421184,278812.2142569655)
     # s = gkq_find_info(113850.49293056593, 270824.6366815064)
-    s = gkq_find_info_custom('116433.26752061576 281414.5202492552,116486.18429311595 281414.5202492552,116486.18429311595 281403.5135670346,116433.26752061576 281403.5135670346,116433.26752061576 281414.5202492552')
+    # s = gkq_find_info_custom('116433.26752061576 281414.5202492552,116486.18429311595 281414.5202492552,116486.18429311595 281403.5135670346,116433.26752061576 281403.5135670346,116433.26752061576 281414.5202492552')
+    # s = kg_find_elements_ldl(60, 70)
+    s = dy_find_info_custom('114246.43169079 274304.627395291,113634.68309079 274240.472595291,113611.75459079 274674.206295291,113601.78349079 274858.469995291,114202.25409079 274921.423395291,114246.43169079 274304.627395291')
     print(s)
     pass

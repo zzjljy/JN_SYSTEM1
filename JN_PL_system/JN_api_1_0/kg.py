@@ -18,7 +18,6 @@ def kg_info_find():
     print(data)
     for k, v in data.to_dict().items():
         data_dict = v
-        # input(data_dict)
     data_dict = json.loads(data_dict)
 
     print(data_dict)
@@ -29,7 +28,7 @@ def kg_info_find():
     if not(ydxz, ssmc):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
-        if ssmc == None:
+        if ssmc == '':
             data = py_connection.kg_find_land(ydxz)
         else:
             data = py_connection.kg_find_land(ydxz, ssmc)
@@ -40,40 +39,36 @@ def kg_info_find():
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
 
 
-@kg.route('/JN/JN_KG/search_element/RJL/<int:rjl_min>/<int:rjl_max>/', methods=['GET'])
-def kg_element_find_rjl(rjl_min, rjl_max):
+@kg.route('/JN/JN_KG/search_element/RJL/<int:rjl_min>/', methods=['GET'])
+def kg_element_find_rjl(rjl_min):
     '''
     根据控规用地绿地率或容积率进行查询
     :return:
     '''
     # 获取参数
     s_rjl = rjl_min
-    b_rjl = rjl_max
-    if not(s_rjl, b_rjl):
-        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
-        data = py_connection.kg_find_elements_rjl(s_rjl, b_rjl)
-        return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+        data = py_connection.kg_find_elements_rjl(s_rjl)
+        if data != 'ERROR':
+            return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
 
 
-@kg.route('/JN/JN_KG/search_element/LDL/<int:ldl_min>/<int:ldl_max>/', methods=['GET'])
-def kg_element_find_ldl(ldl_min, ldl_max):
+@kg.route('/JN/JN_KG/search_element/LDL/<int:ldl_min>/', methods=['GET'])
+def kg_element_find_ldl(ldl_min):
     '''
     根据控规用地绿地率或容积率进行查询
     :return:
     '''
     # 获取参数
     s_ldl = ldl_min
-    b_ldl = ldl_max
-    if not(s_ldl, b_ldl):
-        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
-        data = py_connection.kg_find_elements_ldl(s_ldl, b_ldl)
+        data = py_connection.kg_find_elements_ldl(s_ldl)
         # print(data)
-        return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+        if data != 'ERROR':
+            return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')

@@ -18,6 +18,7 @@ def dl_dldj_find(dldj):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_find_level(dldj)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -32,12 +33,13 @@ def dl_dlmc_find(dlmc):
     '''
     # 获取参数
     dlmc = dlmc
-    print(dlmc)
-    print('-------------')
+    # print(dlmc)
+    # print('-------------')
     if dlmc == None:
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
         data = py_connection.dl_find_mc(dlmc)
+        # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
