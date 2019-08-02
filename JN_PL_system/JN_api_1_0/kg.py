@@ -23,8 +23,8 @@ def kg_info_find():
     print(data_dict)
     ydxz = data_dict.get('ydxz')
     ssmc = data_dict.get('ssmc')
-    print(ydxz)
-    print(ssmc)
+    # print(ydxz)
+    # print(ssmc)
     if not(ydxz, ssmc):
         return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
     try:
@@ -32,6 +32,7 @@ def kg_info_find():
             data = py_connection.kg_find_land(ydxz)
         else:
             data = py_connection.kg_find_land(ydxz, ssmc)
+            print(data)
         # print(data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
@@ -49,6 +50,7 @@ def kg_element_find_rjl(rjl_min):
     s_rjl = rjl_min
     try:
         data = py_connection.kg_find_elements_rjl(s_rjl)
+        # print(data)
         if data != 'ERROR':
             return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:

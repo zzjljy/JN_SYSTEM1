@@ -1,6 +1,6 @@
 import psycopg2
 from config import Config
-import re
+import re, json
 
 coon = ''
 cur = ''
@@ -42,63 +42,24 @@ def kg_find_land(*args):
     :return:符合条件的dict数据
     '''
     db_connection()
+    # table_name = get_table_name()
     if len(args) > 1:
         kg_ydxz = args[0]
         kg_ssmc = args[1]
-        sql = "select ST_AsText(geom), *  from kg where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (
+        sql = "select ST_AsGeoJson(geom) from kg where ydxz='%s' and ssmc like '%%%s%%' order by gid asc" % (
         kg_ydxz, kg_ssmc)
     else:
         kg_ydxz = args[0]
-        sql = "select ST_AsText(geom), * from kg where ydxz='%s' order by gid asc" % kg_ydxz
+        sql = "select ST_AsGeoJson(geom) from kg where ydxz='%s' order by gid asc" % kg_ydxz
 
     cur.execute(sql)
     results = cur.fetchall()
-    finally_results = kg_data_to_dict(results)
+    finally_results = data_to_dict_coordinates(results)
 
     # except Exception as e:
     #     print('查询失败%s' % e)
     coon_close()
     return finally_results
-
-
-# 控规要素查询
-def kg_find_elements(keys):
-    '''
-    控规要素查询，容积率和绿地率的查询
-    绿地率分十个层次，(0,10],(10,20]...
-    容积率分五个层次，(0,1]，(1,2]...(4,]
-    :return:符合条件的json数据
-    '''
-    db_connection()
-    try:
-        finally_result = {}
-        if keys == '绿地率':
-            param = [(0, 10), (10, 20), (20, 30), (30, 40), (40, 50), (50, 60), (60, 70), (70, 80), (80, 90), (90, 100)]
-            for i in range(len(param)):
-                sql = "select ST_AsText(geom), * from kg where ldl>'%s' and ldl<='%s' order by gid asc" % (param[i][0], param[i][1])
-                # sql = "select ST_AsText(geom), * from kg1 where ldl>'%s' and ldl<='%s'" % (10, 20)
-                cur.execute(sql)
-                results = cur.fetchall()
-                results_i = kg_data_to_dict(results)
-                finally_result[i] = results_i
-            # return json.dumps(finally_result, ensure_ascii=False)
-        else:
-            # 容积率
-            param = [(0, 1), (1, 2), (2, 3), (3, 4), (4,)]
-            for i in range(len(param)):
-                if i == 4:
-                    sql = "select ST_AsText(geom), * from kg where rjl>'%s' order by gid asc" % param[i][0]
-                else:
-                    sql = "select ST_AsText(geom), * from kg where rjl>'%s' and rjl<='%s' order by gid asc" % (param[i][0], param[i][1])
-                cur.execute(sql)
-                results = cur.fetchall()
-                results_i = kg_data_to_dict(results)
-                finally_result[i] = results_i
-
-    except Exception as e:
-        print('查询失败%s' % e)
-    coon_close()
-    return finally_result
 
 
 def kg_find_elements_rjl(param1):
@@ -111,17 +72,16 @@ def kg_find_elements_rjl(param1):
     try:
         s_rjl = str(param1)[0]
         if s_rjl == '4':
-            sql = "select ST_AsText(geom) from kg where rjl like '%4%%' or rjl like '%5%%'"
+            sql = "select ST_AsGeoJson(geom) from kg where rjl like '4%%' or rjl like '5%%'"
         else:
-            sql = "select ST_AsText(geom) from kg where rjl like '%s%%'" % s_rjl
+            sql = "select ST_AsGeoJson(geom) from kg where rjl like '%s%%'" % s_rjl
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = kg_data_to_dict_1(results)
+        finally_result = data_to_dict_coordinates(results)
     except Exception as e:
         print('查询失败%s' % e)
         finally_result = 'ERROR'
     coon_close()
-    # print(finally_result)
     return finally_result
 
 
@@ -135,13 +95,13 @@ def kg_find_elements_ldl(param1):
     db_connection()
     try:
         if s_ldl == '0':
-            sql = "select ST_AsText(geom) from kg where ldl ='1' or ldl ='0' or ldl ='2' or ldl ='3' or \
+            sql = "select ST_AsGeoJson(geom) from kg where ldl ='1' or ldl ='0' or ldl ='2' or ldl ='3' or \
             ldl = '4' or ldl = '5' or ldl = '6' or ldl = '7' or ldl = '8' or ldl = '9'"
         else:
-            sql = "select ST_AsText(geom) from kg where ldl like'%s%%' and ldl !='%s'" % (s_ldl, s_ldl)
+            sql = "select ST_AsGeoJson(geom) from kg where ldl like'%s%%' and ldl !='%s'" % (s_ldl, s_ldl)
         cur.execute(sql)
         results = cur.fetchall()
-        results_i = kg_data_to_dict_1(results)
+        results_i = data_to_dict_coordinates(results)
         finally_result = results_i
     except Exception as e:
         print('查询失败%s' % e)
@@ -161,18 +121,92 @@ def kg_search_land_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsText(geom), * from kg where ST_Within('POINT(%s %s)', ST_AsText(geom)) order by gid asc" % (x, y)
+        sql = "select ST_AsGeoJson(geom), * from kg where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = kg_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
-    coon_close()
-    # print(finally_result)
     return finally_result
 
 
-# 将控规数据转为json数据
+def data_to_dict(data):
+    '''
+    将数据转为dict，所有数据
+    :param data:
+    :param table_name:
+    :return:
+    '''
+    desc = cur.description
+    table_name = []
+    for s in desc:
+        table_name.append(s.name)
+    results = {}
+    results["features"] = []
+    for i in range(len(data)):
+        item_dict = {}
+        item_dict["attributes"] = {}
+        for j in range(1, len(data[i])):
+            if table_name[j] == 'geom':
+                item_dict["geometry"] = json.loads(data[i][0])
+                # shape_leng和shape_area 的类型为 数字类型
+                # if table_name[j] == 'shape_leng' or table_name[j] == 'shape_area':
+                #     item_dict["attributes"][table_name[j]] = float(str(data[i][j]))
+                # else:
+                #     item_dict["attributes"][table_name[j]] = str(data[i][j])
+            else:
+                # shape_leng和shape_area 的类型为 数字类型
+                if table_name[j] == 'shape_leng' or table_name[j] == 'shape_area':
+                    item_dict["attributes"][table_name[j]] = float(str(data[i][j]))
+                else:
+                    item_dict["attributes"][table_name[j]] = str(data[i][j])
+        results["features"].append(item_dict)
+    return results
+
+
+def data_to_dict1(data, table_name):
+    '''
+    将数据转为dict，所有数据
+    :param data:
+    :param table_name:
+    :return:
+    '''
+
+    results = {}
+    results["features"] = []
+    for i in range(len(data)):
+        item_dict = {}
+        item_dict["attributes"] = {}
+        for j in range(1, len(data[i])):
+            if table_name[j] == 'geom':
+                item_dict["geometry"] = json.loads(data[i][0])
+            else:
+                # shape_leng和shape_area 的类型为 数字类型
+                if table_name[j] == 'shape_leng' or table_name[j] == 'shape_area':
+                    item_dict["attributes"][table_name[j]] = float(str(data[i][j]))
+                else:
+                    item_dict["attributes"][table_name[j]] = str(data[i][j])
+        results["features"].append(item_dict)
+    return results
+
+
+def data_to_dict_coordinates(data):
+    '''
+    将数据转为dict，只有坐标范围，其他的信息不要
+    :param data:
+    :return:
+    '''
+    results = {}
+    results["features"] = []
+    for i in range(len(data)):
+        item_dict = {}
+        item_dict["geometry"] = json.loads(data[i][0])
+        results["features"].append(item_dict)
+    return results
+
+
+# 将控规数据转为json数据,最原始方法
+
 def kg_data_to_dict(data):
     '''
     将查询出的数据进行整理，为dict格式
@@ -258,78 +292,6 @@ def kg_data_to_dict(data):
     # return results
 
 
-def kg_data_to_dict_1(data):
-    '''
-    绿地率，容积率
-    :param data:
-    :return:
-    '''
-    try:
-        results = {}
-        results["features"] = []
-        if len(data) != 0:
-            for i in range(len(data)):
-                # 每一条数据是一个字典
-                item_dict = {}
-                item_dict["geometry"] = {}
-                # 判断有几个环
-                item_dict["geometry"]["rings"] = []
-                str1 = data[i][0]
-                p = re.compile(r'[(][(][(](.*)[)][)][)]', re.S)
-                # 列表类型的一条数据
-                s1 = re.findall(p, str1)
-                # print(s1)
-                # print('---------')
-                if ')),((' in s1[0]:
-                    s2 = s1[0].split(')),((')
-                    # print(type(s2), s2)
-                    for s3 in s2:
-                        # print(s3)
-                        if '),(' not in s3:
-                            coor_list = []
-                            s4 = s3.split(",")
-                            for st in s4:
-                                s4 = st.split(" ")
-                                coor_list.append([float(s4[0]), float(s4[1])])
-                            item_dict["geometry"]["rings"].append(coor_list)
-                        else:
-                            s4 = s3.split('),(')
-                            for s5 in s4:
-                                s6 = s5.split(",")
-                                coor_list = []
-                                for st in s6:
-                                    s6 = st.split(" ")
-                                    coor_list.append([float(s6[0]), float(s6[1])])
-                                item_dict["geometry"]["rings"].append(coor_list)
-                        #     s2 = s1[0].split(')),((')
-
-                elif '),(' in s1[0]:
-                    s2 = s1[0].split('),(')
-                    for s3 in s2:
-                        coor_list = []
-                        s3 = s3.split(',')
-                        for st in s3:
-                            s4 = st.split(" ")
-                            coor_list.append([float(s4[0]), float(s4[1])])
-                        item_dict["geometry"]["rings"].append(coor_list)
-                else:
-                    s2 = s1
-                    for s3 in s2:
-                        coor_list = []
-                        s3 = s3.split(',')
-                        for st in s3:
-                            s4 = st.split(" ")
-                            coor_list.append([float(s4[0]), float(s4[1])])
-                        item_dict["geometry"]["rings"].append(coor_list)
-                item_dict = item_dict
-                results["features"].append(item_dict)
-            # print(json.dumps(results, ensure_ascii=False))
-        return results
-    except Exception as e:
-        print(e)
-    # return results
-
-
 '''------------------------道路查询-------------------'''
 
 
@@ -340,10 +302,10 @@ def dl_find_mc(dl_name):
     '''
     db_connection()
     try:
-        sql = "select ST_AsText(geom), * from dlzxx where dlmc='%s' order by gid asc" % dl_name
+        sql = "select ST_AsGeoJson(geom) from dlzxx where dlmc='%s' order by gid asc" % dl_name
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = dl_data_to_dict(results)
+        finally_result = data_to_dict_coordinates(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -358,10 +320,10 @@ def dl_find_level(dl_level):
     '''
     db_connection()
     try:
-        sql = "select ST_AsText(geom), * from dlzxx where dldj='%s' order by gid asc" % dl_level
+        sql = "select ST_AsGeoJson(geom) from dlzxx where dldj='%s' order by gid asc" % dl_level
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = dl_data_to_dict(results)
+        finally_result = data_to_dict_coordinates(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -378,10 +340,10 @@ def dl_search_road_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin('POINT(%s %s)',ST_AsText(geom), 2) order by gid asc" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from public.dlzxx where ST_DWithin(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom, 5) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = dl_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -398,11 +360,11 @@ def kg_plot_way(gid):
     gid = gid
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from public.dlzxx where ST_DWithin((select geom from public.kg1 where " \
+        sql = "select ST_AsGeoJson(geom),* from public.dlzxx where ST_DWithin((select geom from public.kg1 where " \
               "gid='%s'),geom,20.0) order by gid asc" % gid
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = dl_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -412,7 +374,7 @@ def kg_plot_way(gid):
 
 def dl_data_to_dict(data):
     '''
-    道路数据处理，将道路数据转为json数据
+    道路数据处理，将道路数据转为json数据，最原始，现在不用
     :return:
     '''
     try:
@@ -477,11 +439,11 @@ def gx_plot_pipeline(gid):
     gid = gid
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from public.gx where ST_DWithin((select geom from public.kg1 where " \
+        sql = "select ST_AsGeoJson(geom),* from public.gx where ST_DWithin((select geom from public.kg1 where " \
               "gid='%s'),geom,25.0) order by gid asc" % gid
         cur.execute(sql)
         results = cur.fetchall()
-        finally_result = dl_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -503,12 +465,12 @@ def gkq_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from gkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from gkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
         #     print(item)
-        finally_result = kg_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -594,17 +556,15 @@ def gkq_find_info_custom(polygon):
         # polygon = '115924.61838536352 281700.1978399141,115963.565125079 281700.1978399141,115963.565125079 281640.5077189189,115924.61838536352 281640.5077189189,115924.61838536352 281700.1978399141'
         # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
         # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
-        sql = "select ST_AsText(geom), * from gkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from gkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
-        # for item in result:
-        #     print(item)
-        finally_result = kg_data_to_dict(result)
+        finally_results = data_to_dict(result)
         # print(finally_result)
     except Exception as e:
         print('查询失败%s' % e)
-    coon_close()
-    return finally_result
+    # coon_close()
+    return finally_results
 
 
 def gkq_custom_transformation_big(gid, ydxz, ydlb):
@@ -718,12 +678,12 @@ def dy_find_info_custom(polygon):
     polygon = polygon
     db_connection()
     try:
-        sql = "select ST_AsText(geom), * from danyuan where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from danyuan where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         # for item in result:
         #     print(item)
-        finally_result = kg_data_to_dict(result)
+        finally_result = data_to_dict(result)
         # print(finally_result)
     except Exception as e:
         print('查询失败%s' % e)
@@ -745,10 +705,10 @@ def tb_find_info_custom(polygon):
     db_connection()
     try:
         polygon = polygon
-        sql = "select ST_AsText(geom), * from tuban where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from tuban where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
-        finally_result = kg_data_to_dict(result)
+        finally_result = data_to_dict(result)
         # print(finally_result)
     except Exception as e:
         print('查询失败%s' % e)
@@ -767,12 +727,12 @@ def tb_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from tuban where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from tuban where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
         #     print(item)
-        finally_result = kg_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -793,10 +753,10 @@ def czc_find_info_custom(polygon):
     db_connection()
     try:
         polygon = polygon
-        sql = "select ST_AsText(geom), * from czc where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from czc where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
-        finally_result = kg_data_to_dict(result)
+        finally_result = data_to_dict(result)
         # print(finally_result)
     except Exception as e:
         print('查询失败%s' % e)
@@ -815,12 +775,12 @@ def czc_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsText(geom),* from czc where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from czc where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
         #     print(item)
-        finally_result = kg_data_to_dict(results)
+        finally_result = data_to_dict(results)
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
@@ -862,6 +822,8 @@ if __name__ == '__main__':
     # s = gkq_find_info(113850.49293056593, 270824.6366815064)
     # s = gkq_find_info_custom('116433.26752061576 281414.5202492552,116486.18429311595 281414.5202492552,116486.18429311595 281403.5135670346,116433.26752061576 281403.5135670346,116433.26752061576 281414.5202492552')
     # s = kg_find_elements_ldl(60, 70)
-    s = dy_find_info_custom('114246.43169079 274304.627395291,113634.68309079 274240.472595291,113611.75459079 274674.206295291,113601.78349079 274858.469995291,114202.25409079 274921.423395291,114246.43169079 274304.627395291')
+    # s = dy_find_info_custom('114246.43169079 274304.627395291,113634.68309079 274240.472595291,113611.75459079 274674.206295291,113601.78349079 274858.469995291,114202.25409079 274921.423395291,114246.43169079 274304.627395291')
+    s = gkq_find_info(118816.09705427944, 287153.42964271747)
     print(s)
+    # print(len(s.get('features')))
     pass

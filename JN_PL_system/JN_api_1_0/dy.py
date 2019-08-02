@@ -25,7 +25,7 @@ def dy_find_info_custom():
     :return:
     '''
     dy_data = request.args
-    print(dy_data)
+    # print(dy_data)
     for k, v in dy_data.to_dict().items():
         data = v
     rings = json.loads(data)
@@ -76,6 +76,30 @@ def dy_data_downloads(target_fid):
                 datas = fs.get(object._id).read()
                 zf.writestr(object.file_name + '.' + object.file_type, datas)
         memory_file.seek(0)
-        return send_file(memory_file, attachment_filename=dl_name, as_attachment=True)
+        return send_file(memory_file, attachment_filename=dl_name, mimetype='text/html', as_attachment=True)
+    else:
+        return jsonify(errorno=RET.REQERR, errmsg='非法请求')
+
+
+@dy.route('/JN1/JN_DY/data_download/<target_fid>/', methods=['GET'])
+def dy_data_download1(target_fid):
+    '''
+    单元对应资料下载
+    json数据：
+            target_fid:0
+    :return:
+    '''
+    # 获取参数
+    if request.method == 'GET':
+        target_fid = str(target_fid)
+        objects = fs.find({'target_fid': target_fid})
+        if objects.count() == 0:
+            return jsonify(errorno=4503, errmsg='数据不存在')
+        file_bytes = {}
+        for object in objects:
+            datas = fs.get(object._id).read()
+            file_name = object.file_name + '.' + object.file_type
+            file_bytes[file_name] = str(datas)
+        return jsonify(file_bytes)
     else:
         return jsonify(errorno=RET.REQERR, errmsg='非法请求')

@@ -5,9 +5,11 @@ from logging.handlers import RotatingFileHandler
 from JN_PL_system.utils.commons import RegexConverter
 from flask_mongoengine import MongoEngine
 from flask_cors import CORS
+from flask_compress import Compress
 
 app = Flask(__name__)
 CORS(app, resources=r'/*')
+Compress(app)
 app.config['MONGODB_SETTINGS'] = {
     'host': Config.MONGODB_HOST,
     'port': Config.MONGODB_PORT,

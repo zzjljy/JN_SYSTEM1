@@ -9,7 +9,7 @@ cur = ''
 def db_connection():
     try:
         global coon, cur
-        coon = psycopg2.connect(database="my_first_postgis", user="postgres", password='123456', host='localhost',
+        coon = psycopg2.connect(database="JN_SYSTEM", user="postgres", password='123456', host='localhost',
                                 port='5432')
         cur = coon.cursor()
         print('connected successful!!')
@@ -125,8 +125,20 @@ def kg():
     close()
 
 
+def kg_test():
+    import json
+    db_connection()
+    sql = "select ST_AsGeoJson(geom) from kg where gid<10"
+    cur.execute(sql)
+    results = cur.fetchall()
+    for item in results:
+        print(type(json.loads(item[0])), json.loads(item[0]))
+    close()
+
+
 if __name__ == '__main__':
     # update_kg()
     # update_dl()
     # update_yjgkq()
-    kg()
+    # kg()
+    kg_test()
