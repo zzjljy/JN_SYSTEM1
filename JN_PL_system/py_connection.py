@@ -121,7 +121,7 @@ def kg_search_land_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsGeoJson(geom), * from kg where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom) order by gid asc" % (x, y)
+        sql = "select ST_AsGeoJson(geom), * from kg where st_within(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = data_to_dict(results)
@@ -141,37 +141,6 @@ def data_to_dict(data):
     table_name = []
     for s in desc:
         table_name.append(s.name)
-    results = {}
-    results["features"] = []
-    for i in range(len(data)):
-        item_dict = {}
-        item_dict["attributes"] = {}
-        for j in range(1, len(data[i])):
-            if table_name[j] == 'geom':
-                item_dict["geometry"] = json.loads(data[i][0])
-                # shape_leng和shape_area 的类型为 数字类型
-                # if table_name[j] == 'shape_leng' or table_name[j] == 'shape_area':
-                #     item_dict["attributes"][table_name[j]] = float(str(data[i][j]))
-                # else:
-                #     item_dict["attributes"][table_name[j]] = str(data[i][j])
-            else:
-                # shape_leng和shape_area 的类型为 数字类型
-                if table_name[j] == 'shape_leng' or table_name[j] == 'shape_area':
-                    item_dict["attributes"][table_name[j]] = float(str(data[i][j]))
-                else:
-                    item_dict["attributes"][table_name[j]] = str(data[i][j])
-        results["features"].append(item_dict)
-    return results
-
-
-def data_to_dict1(data, table_name):
-    '''
-    将数据转为dict，所有数据
-    :param data:
-    :param table_name:
-    :return:
-    '''
-
     results = {}
     results["features"] = []
     for i in range(len(data)):
@@ -302,7 +271,7 @@ def dl_find_mc(dl_name):
     '''
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom) from dlzxx where dlmc='%s' order by gid asc" % dl_name
+        sql = "select ST_AsGeoJson(geom) from dl where dlmc='%s' order by gid asc" % dl_name
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = data_to_dict_coordinates(results)
@@ -320,7 +289,7 @@ def dl_find_level(dl_level):
     '''
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom) from dlzxx where dldj='%s' order by gid asc" % dl_level
+        sql = "select ST_AsGeoJson(geom) from dl where dldj='%s' order by gid asc" % dl_level
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = data_to_dict_coordinates(results)
@@ -340,7 +309,7 @@ def dl_search_road_info(*args):
     try:
         x = args[0]
         y = args[1]
-        sql = "select ST_AsGeoJson(geom),* from public.dlzxx where ST_DWithin(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom, 5) order by gid asc" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from public.dl where ST_DWithin(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom, 5) order by gid asc" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         finally_result = data_to_dict(results)
@@ -787,6 +756,54 @@ def czc_find_info(*args):
     return finally_result
 
 
+'''----------------镇界---------------------'''
+
+
+def zj_areas_geom():
+    '''
+    津南所有镇界的坐标范围信息
+    :return:
+    '''
+    db_connection()
+    try:
+        sql = "select ST_AsGeoJson(geom) from zj "
+        cur.execute(sql)
+        results = cur.fetchall()
+        finally_result = data_to_dict_coordinates(results)
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
+'''------------修详规-------------'''
+
+
+def xxg_find_info(*args):
+    '''
+    修详规建筑及地界的信息
+    :return:
+    '''
+    point_x = args[0]
+    point_y = args[1]
+    db_connection()
+    try:
+        sql_jianzhu = "select ST_AsGeoJson(geom),* from xxg_jianzhu where st_within(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom)" % (
+        point_x, point_y)
+        sql_dijie = "select ST_AsGeoJson(geom),* from xxg_dijie where st_within(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom)" % (
+            point_x, point_y)
+        cur.execute(sql_jianzhu)
+        results = cur.fetchall()
+        result_jianzhu = data_to_dict(results)
+        cur.execute(sql_dijie)
+        result_dijie = data_to_dict(cur.fetchall())
+        finally_result = {'修详规建筑': result_jianzhu, '修详规地界':result_dijie}
+    except Exception as e:
+        print('查询失败%s' % e)
+    coon_close()
+    return finally_result
+
+
 '''-------------------------------'''
 
 
@@ -823,7 +840,8 @@ if __name__ == '__main__':
     # s = gkq_find_info_custom('116433.26752061576 281414.5202492552,116486.18429311595 281414.5202492552,116486.18429311595 281403.5135670346,116433.26752061576 281403.5135670346,116433.26752061576 281414.5202492552')
     # s = kg_find_elements_ldl(60, 70)
     # s = dy_find_info_custom('114246.43169079 274304.627395291,113634.68309079 274240.472595291,113611.75459079 274674.206295291,113601.78349079 274858.469995291,114202.25409079 274921.423395291,114246.43169079 274304.627395291')
-    s = gkq_find_info(118816.09705427944, 287153.42964271747)
+    # s = gkq_find_info(118816.09705427944, 287153.42964271747)
+    # s = kg_search_land_info(534892.4672422454, 4316697.275458975)
+    # s = zj_areas_geom()
+    s = xxg_find_info(524544.891276536, 4320727.24522591)
     print(s)
-    # print(len(s.get('features')))
-    pass

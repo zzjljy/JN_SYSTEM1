@@ -15,12 +15,12 @@ def kg_info_find():
     '''
     # 获取参数
     data = request.args
-    print(data)
+    # print(data)
     for k, v in data.to_dict().items():
         data_dict = v
     data_dict = json.loads(data_dict)
 
-    print(data_dict)
+    # print(data_dict)
     ydxz = data_dict.get('ydxz')
     ssmc = data_dict.get('ssmc')
     # print(ydxz)

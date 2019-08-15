@@ -81,4 +81,11 @@ def create_app(config_name):
     from .JN_api_1_0.tb import tb
     app.register_blueprint(tb, url_prefix='/jn_api/v1.0')
 
+    # 镇界
+    from .JN_api_1_0.zj import zj
+    app.register_blueprint(zj, url_prefix='/jn_api/v1.0')
+
+    # 修详规
+    from .JN_api_1_0.xxg import xxg
+    app.register_blueprint(xxg, url_prefix='/jn_api/v1.0')
     return app
