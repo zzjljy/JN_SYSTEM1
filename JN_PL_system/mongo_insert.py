@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from .models import DL, DLHDM, DY, GKQXZ, KG, YJGKQ, ZJ, GX, YX, DLHDM_IMG, TB
+from .models import DL, DLHDM, DY, GKQXZ, KG, YJGKQ, ZJ, GX, YX, DLHDM_IMG, TB, FWGJ
 
 
 client = MongoClient(host='127.0.0.1', port=27017)
@@ -259,13 +259,13 @@ def yx_insert_new():
                         file.close()
 
 
-def tb_insert_new():
+def yjgkq_insert_new():
     # -*- coding: ascii -*-
     import os
     import struct
     from pymongo import MongoClient
     # dblocation=r'C:\Users\95768\Desktop\tjdmapt.db'#'H:\\Project\\AndroidProject\\WAMap\\tjdmapb.sqlitedb'
-    agscachedir = r'C:\Users\95768\Desktop\111\JN_DLTB_0808\tuceng\_alllayers'
+    agscachedir = r'C:\Users\95768\Desktop\111\JN_JNLUW0815\Layers\_alllayers'
     class structtype:
         pass
 
@@ -330,7 +330,7 @@ def tb_insert_new():
                                     item_data["z"] = level
                                     item_data["image"] = binaryTile
                                     try:
-                                        TB(x=irow, y=icol, z=level, image=binaryTile).save()
+                                        DL(x=irow, y=icol, z=level, image=binaryTile).save()
 
                                     except Exception as e:
                                         print(e)

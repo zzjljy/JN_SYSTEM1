@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app, make_response, render_template
-from .mongo_insert import tb_insert_new, kg_insert_new, yx_insert_new
+from .mongo_insert import yjgkq_insert_new, kg_insert_new, yx_insert_new
 
 html = Blueprint('html', __name__)
 
@@ -24,7 +24,7 @@ def index():
     # tb_insert()
     # kg_insert_new()
     # yx_insert_new()
-    tb_insert_new()
+    # yjgkq_insert_new()
     return render_template('index.html')
 
 

@@ -329,7 +329,7 @@ def kg_plot_way(gid):
     gid = gid
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom),* from public.dlzxx where ST_DWithin((select geom from public.kg1 where " \
+        sql = "select ST_AsGeoJson(geom),* from public.dl where ST_DWithin((select geom from public.kg where " \
               "gid='%s'),geom,20.0) order by gid asc" % gid
         cur.execute(sql)
         results = cur.fetchall()
@@ -434,7 +434,7 @@ def gkq_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom),* from gkq where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from gkq where st_within(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
@@ -525,7 +525,7 @@ def gkq_find_info_custom(polygon):
         # polygon = '115924.61838536352 281700.1978399141,115963.565125079 281700.1978399141,115963.565125079 281640.5077189189,115924.61838536352 281640.5077189189,115924.61838536352 281700.1978399141'
         # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
         # polygon = '116526.59956833233 281435.1906739168,116600.68304983265 281435.1906739168,116600.68304983265 281385.23724390636,116526.59956833233 281385.23724390636,116526.59956833233 281435.1906739168'
-        sql = "select ST_AsGeoJson(geom), * from gkq where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from gkq where ST_Intersects(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         finally_results = data_to_dict(result)
@@ -647,7 +647,7 @@ def dy_find_info_custom(polygon):
     polygon = polygon
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom), * from danyuan where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from danyuan where ST_Intersects(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         # for item in result:
@@ -674,7 +674,7 @@ def tb_find_info_custom(polygon):
     db_connection()
     try:
         polygon = polygon
-        sql = "select ST_AsGeoJson(geom), * from tuban where ST_Intersects(GeomFromEWKT('SRID=32650;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
+        sql = "select ST_AsGeoJson(geom), * from tuban where ST_Intersects(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),geom) order by gid asc" % polygon
         cur.execute(sql)
         result = cur.fetchall()
         finally_result = data_to_dict(result)
@@ -696,7 +696,7 @@ def tb_find_info(*args):
     y = args[1]
     db_connection()
     try:
-        sql = "select ST_AsGeoJson(geom),* from tuban where st_within(GeomFromEWKT('SRID=32650;POINT(%s %s)'),geom)" % (x, y)
+        sql = "select ST_AsGeoJson(geom),* from tuban where st_within(GeomFromEWKT('SRID=4548;POINT(%s %s)'),geom)" % (x, y)
         cur.execute(sql)
         results = cur.fetchall()
         # for item in results:
@@ -797,7 +797,7 @@ def xxg_find_info(*args):
         result_jianzhu = data_to_dict(results)
         cur.execute(sql_dijie)
         result_dijie = data_to_dict(cur.fetchall())
-        finally_result = {'修详规建筑': result_jianzhu, '修详规地界':result_dijie}
+        finally_result = {'修详规建筑': result_jianzhu, '修详规地界': result_dijie}
     except Exception as e:
         print('查询失败%s' % e)
     coon_close()
