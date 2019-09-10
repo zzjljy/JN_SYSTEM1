@@ -6,6 +6,7 @@ from JN_PL_system.utils.commons import RegexConverter
 from flask_mongoengine import MongoEngine
 from flask_cors import CORS
 from flask_compress import Compress
+import flask_excel as excel
 
 app = Flask(__name__)
 CORS(app, resources=r'/*')
@@ -35,7 +36,7 @@ def create_app(config_name):
     setup_logging(configs[config_name].LOGGING_LEVEL)
 
     # db = MongoEngine(app)
-
+    excel.init_excel(app)
     # 从配置对象中为APP设置配置信息
     app.config.from_object(configs[config_name])
 

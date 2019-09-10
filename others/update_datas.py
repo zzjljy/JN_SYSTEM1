@@ -136,9 +136,26 @@ def kg_test():
     close()
 
 
+def kg_and_dy():
+    db_connection()
+    sql = "select geom,gid from kg where ssmc like '%%垃圾转运站%%'"
+    cur.execute(sql)
+    results = cur.fetchall()
+    print(len(results))
+    for item in results:
+        # print(item[0])
+        sql_dy = "select text from danyuan where st_within(%s,geom)" % item[0]
+        cur.execute(sql_dy)
+        result_dy = cur.fetchall()
+        for item_dy in result_dy:
+            print(item_dy, item[1])
+
+
 if __name__ == '__main__':
     # update_kg()
     # update_dl()
     # update_yjgkq()
     # kg()
-    kg_test()
+    # kg_test()
+    kg_and_dy()
+    pass

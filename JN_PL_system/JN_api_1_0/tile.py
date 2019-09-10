@@ -9,19 +9,772 @@ tile = Blueprint('tile', __name__)
 
 @tile.route('/JN/JNYX/MapServer/')
 def get_jnyx_mapserver():
-    s = '{"currentVersion":10.4,"serviceDescription":"","mapName":"图层","description":"","copyrightText":"","supportsDynamicLayers":false,"layers":[{"id":0,"name":"津南2000.tif","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0}],"tables":[],"spatialReference":{"wkid":4548,"latestWkid":4548},"singleFusedMapCache":true,"tileInfo":{"rows":256,"cols":256,"dpi":96,"format":"JPEG","compressionQuality":75,"origin":{"x":450000,"y":4500000},"spatialReference":{"wkid":4548,"latestWkid":4548},"lods":[{"level":0,"resolution":66.1459656252646,"scale":250000},{"level":1,"resolution":33.0729828126323,"scale":125000},{"level":2,"resolution":16.933367200067735,"scale":64000},{"level":3,"resolution":8.466683600033868,"scale":32000},{"level":4,"resolution":4.233341800016934,"scale":16000},{"level":5,"resolution":2.116670900008467,"scale":8000},{"level":6,"resolution":1.0583354500042335,"scale":4000},{"level":7,"resolution":0.5291677250021167,"scale":2000}]},"initialExtent":{"xmin":515553.2078085329,"ymin":4290961.276294501,"xmax":550832.0112841823,"ymax":4337169.591435156,"spatialReference":{"wkid":4548,"latestWkid":4548}},"fullExtent":{"xmin":517225.96390916087,"ymin":4299813.985908369,"xmax":549297.6034324785,"ymax":4328317.039779668,"spatialReference":{"wkid":4548,"latestWkid":4548}},"minScale":250000,"maxScale":2000,"units":"esriMeters","supportedImageFormatTypes":"PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP","documentInfo":{"Title":"","Author":"","Comments":"","Subject":"","Category":"","AntialiasingMode":"None","TextAntialiasingMode":"Force","Keywords":""},"capabilities":"Map,Query,Data","supportedQueryFormats":"JSON, AMF, geoJSON","exportTilesAllowed":false,"maxRecordCount":1000,"maxImageHeight":4096,"maxImageWidth":4096,"tileServers":"","supportedExtensions":"KmlServer"}'
+    s = '''
+    {
+     "currentVersion": 10.4,
+     "serviceDescription": "",
+     "mapName": "图层",
+     "description": "",
+     "copyrightText": "",
+     "supportsDynamicLayers": false,
+     "layers": [
+      {
+       "id": 0,
+       "name": "津南2000.tif",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      }
+     ],
+     "tables": [],
+     "spatialReference": {
+      "wkid": 4548,
+      "latestWkid": 4548
+     },
+     "singleFusedMapCache": true,
+     "tileInfo": {
+      "rows": 256,
+      "cols": 256,
+      "dpi": 96,
+      "format": "JPEG",
+      "compressionQuality": 75,
+      "origin": {
+       "x": 450000,
+       "y": 4500000
+      },
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      },
+      "lods": [
+       {
+        "level": 0,
+        "resolution": 66.1459656252646,
+        "scale": 250000
+       },
+       {
+        "level": 1,
+        "resolution": 33.0729828126323,
+        "scale": 125000
+       },
+       {
+        "level": 2,
+        "resolution": 16.933367200067735,
+        "scale": 64000
+       },
+       {
+        "level": 3,
+        "resolution": 8.466683600033868,
+        "scale": 32000
+       },
+       {
+        "level": 4,
+        "resolution": 4.233341800016934,
+        "scale": 16000
+       },
+       {
+        "level": 5,
+        "resolution": 2.116670900008467,
+        "scale": 8000
+       },
+       {
+        "level": 6,
+        "resolution": 1.0583354500042335,
+        "scale": 4000
+       },
+       {
+        "level": 7,
+        "resolution": 0.5291677250021167,
+        "scale": 2000
+       }
+      ]
+     },
+     "initialExtent": {
+      "xmin": 518479.1958749219,
+      "ymin": 4297817.304570119,
+      "xmax": 553757.9993505713,
+      "ymax": 4329170.837582767,
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      }
+     },
+     "fullExtent": {
+      "xmin": 517225.96390916087,
+      "ymin": 4299813.985908369,
+      "xmax": 549297.6034324785,
+      "ymax": 4328317.039779668,
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      }
+     },
+     "minScale": 250000,
+     "maxScale": 2000,
+     "units": "esriMeters",
+     "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+     "documentInfo": {
+      "Title": "",
+      "Author": "",
+      "Comments": "",
+      "Subject": "",
+      "Category": "",
+      "AntialiasingMode": "None",
+      "TextAntialiasingMode": "Force",
+      "Keywords": ""
+     },
+     "capabilities": "Map,Query,Data",
+     "supportedQueryFormats": "JSON, AMF, geoJSON",
+     "exportTilesAllowed": false,
+     "maxRecordCount": 1000,
+     "maxImageHeight": 4096,
+     "maxImageWidth": 4096,
+     "tileServers": "",
+     "supportedExtensions": "KmlServer"
+    }
+'''
     return jsonify(json.loads(s))
 
 
 @tile.route('/JN/JNZJ/MapServer/')
 def get_jnzj_mapserver():
-    info = '{"currentVersion":10.4,"serviceDescription":"","mapName":"图层","description":"","copyrightText":"","supportsDynamicLayers":false,"layers":[{"id":0,"name":"津南镇界注记350000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[1],"minScale":350000,"maxScale":250001},{"id":1,"name":"默认","parentLayerId":0,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":2,"name":"津南镇界注记250000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[3],"minScale":250000,"maxScale":200001},{"id":3,"name":"默认","parentLayerId":2,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":4,"name":"津南镇界注记150000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[5],"minScale":150000,"maxScale":100001},{"id":5,"name":"默认","parentLayerId":4,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":6,"name":"津南镇界注记200000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[7],"minScale":200000,"maxScale":150001},{"id":7,"name":"默认","parentLayerId":6,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":8,"name":"津南镇界注记100000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[9],"minScale":100000,"maxScale":80001},{"id":9,"name":"默认","parentLayerId":8,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":10,"name":"津南镇界注记80000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[11],"minScale":80000,"maxScale":60001},{"id":11,"name":"默认","parentLayerId":10,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":12,"name":"津南镇界注记60000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[13],"minScale":60000,"maxScale":40001},{"id":13,"name":"默认","parentLayerId":12,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":14,"name":"津南镇界注记40000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[15],"minScale":40000,"maxScale":30001},{"id":15,"name":"默认","parentLayerId":14,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":16,"name":"津南镇界注记30000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[17],"minScale":30000,"maxScale":20001},{"id":17,"name":"默认","parentLayerId":16,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":18,"name":"津南镇界注记20000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[19],"minScale":20000,"maxScale":10001},{"id":19,"name":"默认","parentLayerId":18,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":20,"name":"津南镇界注记8000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[21],"minScale":10000,"maxScale":8000},{"id":21,"name":"默认","parentLayerId":20,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":22,"name":"津南镇界注记4000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[23],"minScale":7999,"maxScale":4000},{"id":23,"name":"默认","parentLayerId":22,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":24,"name":"津南镇界注记2000","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":[25],"minScale":3999,"maxScale":2000},{"id":25,"name":"默认","parentLayerId":24,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0},{"id":26,"name":"镇界1","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":500000,"maxScale":150001},{"id":27,"name":"镇界1","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":150000,"maxScale":8001},{"id":28,"name":"镇界1","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":8000,"maxScale":2000}],"tables":[],"spatialReference":{"wkid":32650,"latestWkid":32650},"singleFusedMapCache":true,"tileInfo":{"rows":256,"cols":256,"dpi":96,"format":"PNG32","compressionQuality":0,"origin":{"x":0,"y":480000},"spatialReference":{"wkid":32650,"latestWkid":32650},"lods":[{"level":0,"resolution":132.2919312505292,"scale":500000.00000000006},{"level":1,"resolution":66.1459656252646,"scale":250000.00000000003},{"level":2,"resolution":33.0729828126323,"scale":125000.00000000001},{"level":3,"resolution":16.933367200067735,"scale":64000},{"level":4,"resolution":8.466683600033868,"scale":32000},{"level":5,"resolution":4.233341800016934,"scale":16000},{"level":6,"resolution":2.116670900008467,"scale":8000},{"level":7,"resolution":1.0583354500042335,"scale":4000},{"level":8,"resolution":0.5291677250021167,"scale":2000}]},"initialExtent":{"xmin":105642.72482931444,"ymin":274367.6293933934,"xmax":123555.0523206361,"ymax":289104.9505347023,"spatialReference":{"wkid":32650,"latestWkid":32650}},"fullExtent":{"xmin":101592.327057,"ymin":268631.36424,"xmax":130901.09097800001,"ymax":294567.08761000005,"spatialReference":{"wkid":32650,"latestWkid":32650}},"minScale":500000.00000000006,"maxScale":2000,"units":"esriMeters","supportedImageFormatTypes":"PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP","documentInfo":{"Title":"","Author":"","Comments":"","Subject":"","Category":"","AntialiasingMode":"None","TextAntialiasingMode":"Force","Keywords":""},"capabilities":"Map,Query,Data","supportedQueryFormats":"JSON, AMF, geoJSON","exportTilesAllowed":false,"maxRecordCount":1000,"maxImageHeight":4096,"maxImageWidth":4096,"tileServers":"","supportedExtensions":"KmlServer"}'
+    info = '''
+    {
+         "currentVersion": 10.4,
+         "serviceDescription": "",
+         "mapName": "图层",
+         "description": "",
+         "copyrightText": "",
+         "supportsDynamicLayers": false,
+         "layers": [
+          {
+           "id": 0,
+           "name": "津南镇界注记350000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            1
+           ],
+           "minScale": 350000,
+           "maxScale": 250001
+          },
+          {
+           "id": 1,
+           "name": "默认",
+           "parentLayerId": 0,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 2,
+           "name": "津南镇界注记250000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            3
+           ],
+           "minScale": 250000,
+           "maxScale": 200001
+          },
+          {
+           "id": 3,
+           "name": "默认",
+           "parentLayerId": 2,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 4,
+           "name": "津南镇界注记150000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            5
+           ],
+           "minScale": 150000,
+           "maxScale": 100001
+          },
+          {
+           "id": 5,
+           "name": "默认",
+           "parentLayerId": 4,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 6,
+           "name": "津南镇界注记200000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            7
+           ],
+           "minScale": 200000,
+           "maxScale": 150001
+          },
+          {
+           "id": 7,
+           "name": "默认",
+           "parentLayerId": 6,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 8,
+           "name": "津南镇界注记100000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            9
+           ],
+           "minScale": 100000,
+           "maxScale": 80001
+          },
+          {
+           "id": 9,
+           "name": "默认",
+           "parentLayerId": 8,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 10,
+           "name": "津南镇界注记80000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            11
+           ],
+           "minScale": 80000,
+           "maxScale": 60001
+          },
+          {
+           "id": 11,
+           "name": "默认",
+           "parentLayerId": 10,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 12,
+           "name": "津南镇界注记60000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            13
+           ],
+           "minScale": 60000,
+           "maxScale": 40001
+          },
+          {
+           "id": 13,
+           "name": "默认",
+           "parentLayerId": 12,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 14,
+           "name": "津南镇界注记40000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            15
+           ],
+           "minScale": 40000,
+           "maxScale": 30001
+          },
+          {
+           "id": 15,
+           "name": "默认",
+           "parentLayerId": 14,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 16,
+           "name": "津南镇界注记30000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            17
+           ],
+           "minScale": 30000,
+           "maxScale": 20001
+          },
+          {
+           "id": 17,
+           "name": "默认",
+           "parentLayerId": 16,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 18,
+           "name": "津南镇界注记20000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            19
+           ],
+           "minScale": 20000,
+           "maxScale": 10001
+          },
+          {
+           "id": 19,
+           "name": "默认",
+           "parentLayerId": 18,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 20,
+           "name": "津南镇界注记8000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            21
+           ],
+           "minScale": 10000,
+           "maxScale": 8000
+          },
+          {
+           "id": 21,
+           "name": "默认",
+           "parentLayerId": 20,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 22,
+           "name": "津南镇界注记4000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            23
+           ],
+           "minScale": 7999,
+           "maxScale": 4000
+          },
+          {
+           "id": 23,
+           "name": "默认",
+           "parentLayerId": 22,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 24,
+           "name": "津南镇界注记2000",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": [
+            25
+           ],
+           "minScale": 3999,
+           "maxScale": 2000
+          },
+          {
+           "id": 25,
+           "name": "默认",
+           "parentLayerId": 24,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 0,
+           "maxScale": 0
+          },
+          {
+           "id": 26,
+           "name": "镇界1",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 500000,
+           "maxScale": 150001
+          },
+          {
+           "id": 27,
+           "name": "镇界1",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 150000,
+           "maxScale": 8001
+          },
+          {
+           "id": 28,
+           "name": "镇界1",
+           "parentLayerId": -1,
+           "defaultVisibility": true,
+           "subLayerIds": null,
+           "minScale": 8000,
+           "maxScale": 2000
+          }
+         ],
+         "tables": [],
+         "spatialReference": {
+          "wkid": 4548,
+          "latestWkid": 4548
+         },
+         "singleFusedMapCache": true,
+         "tileInfo": {
+          "rows": 256,
+          "cols": 256,
+          "dpi": 96,
+          "format": "PNG32",
+          "compressionQuality": 0,
+          "origin": {
+           "x": 450000,
+           "y": 4500000
+          },
+          "spatialReference": {
+           "wkid": 4548,
+           "latestWkid": 4548
+          },
+          "lods": [
+           {
+            "level": 0,
+            "resolution": 66.1459656252646,
+            "scale": 250000
+           },
+           {
+            "level": 1,
+            "resolution": 33.0729828126323,
+            "scale": 125000
+           },
+           {
+            "level": 2,
+            "resolution": 16.933367200067735,
+            "scale": 64000
+           },
+           {
+            "level": 3,
+            "resolution": 8.466683600033868,
+            "scale": 32000
+           },
+           {
+            "level": 4,
+            "resolution": 4.233341800016934,
+            "scale": 16000
+           },
+           {
+            "level": 5,
+            "resolution": 2.116670900008467,
+            "scale": 8000
+           },
+           {
+            "level": 6,
+            "resolution": 1.0583354500042335,
+            "scale": 4000
+           },
+           {
+            "level": 7,
+            "resolution": 0.5291677250021167,
+            "scale": 2000
+           }
+          ]
+         },
+         "initialExtent": {
+          "xmin": 510013.16134508245,
+          "ymin": 4297772.3369222935,
+          "xmax": 563353.2680252957,
+          "ymax": 4332618.031613683,
+          "spatialReference": {
+           "wkid": 4548,
+           "latestWkid": 4548
+          }
+         },
+         "fullExtent": {
+          "xmin": 1,
+          "ymin": 1,
+          "xmax": 597045.8458091186,
+          "ymax": 4379440.613850569,
+          "spatialReference": {
+           "wkid": 4548,
+           "latestWkid": 4548
+          }
+         },
+         "minScale": 250000,
+         "maxScale": 2000,
+         "units": "esriMeters",
+         "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+         "documentInfo": {
+          "Title": "",
+          "Author": "",
+          "Comments": "",
+          "Subject": "",
+          "Category": "",
+          "AntialiasingMode": "None",
+          "TextAntialiasingMode": "Force",
+          "Keywords": ""
+         },
+         "capabilities": "Map,Query,Data",
+         "supportedQueryFormats": "JSON, AMF, geoJSON",
+         "exportTilesAllowed": false,
+         "maxRecordCount": 1000,
+         "maxImageHeight": 4096,
+         "maxImageWidth": 4096,
+         "tileServers": "",
+         "supportedExtensions": "KmlServer"
+    }
+    '''
     return jsonify(json.loads(info))
 
 
 @tile.route('/JN/JNDL/MapServer/')
 def get_jndl_mapserver():
-    info = '{"currentVersion":10.4,"serviceDescription":"","mapName":"Layers","description":"","copyrightText":"","supportsDynamicLayers":false,"layers":[{"id":0,"name":"20190814津南路网","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0}],"tables":[],"spatialReference":{"wkid":4548,"latestWkid":4548},"singleFusedMapCache":true,"tileInfo":{"rows":256,"cols":256,"dpi":96,"format":"PNG32","compressionQuality":0,"origin":{"x":450000,"y":4500000},"spatialReference":{"wkid":4548,"latestWkid":4548},"lods":[{"level":0,"resolution":66.1459656252646,"scale":250000},{"level":1,"resolution":33.0729828126323,"scale":125000},{"level":2,"resolution":16.933367200067735,"scale":64000},{"level":3,"resolution":8.466683600033868,"scale":32000},{"level":4,"resolution":4.233341800016934,"scale":16000},{"level":5,"resolution":2.116670900008467,"scale":8000},{"level":6,"resolution":1.0583354500042335,"scale":4000},{"level":7,"resolution":0.5291677250021167,"scale":2000}]},"initialExtent":{"xmin":519423.87757529534,"ymin":4300214.192906551,"xmax":547721.1216697836,"ymax":4326447.682873528,"spatialReference":{"wkid":4548,"latestWkid":4548}},"fullExtent":{"xmin":518790.43940046,"ymin":4300335.524434159,"xmax":547964.9595109841,"ymax":4327014.984144058,"spatialReference":{"wkid":4548,"latestWkid":4548}},"minScale":250000,"maxScale":2000,"units":"esriMeters","supportedImageFormatTypes":"PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP","documentInfo":{"Title":"","Author":"","Comments":"","Subject":"","Category":"","AntialiasingMode":"None","TextAntialiasingMode":"Force","Keywords":""},"capabilities":"Map,Query,Data","supportedQueryFormats":"JSON, AMF, geoJSON","exportTilesAllowed":false,"maxRecordCount":1000,"maxImageHeight":4096,"maxImageWidth":4096,"tileServers":"","supportedExtensions":"KmlServer"}'
+    info = '''
+    {
+ "currentVersion": 10.4,
+ "serviceDescription": "",
+ "mapName": "Layers",
+ "description": "",
+ "copyrightText": "",
+ "supportsDynamicLayers": false,
+ "layers": [
+  {
+   "id": 0,
+   "name": "dlzxxxAnno8000x",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    9
+   ],
+   "minScale": 9999,
+   "maxScale": 6000
+  },
+  {
+   "id": 9,
+   "name": "默认",
+   "parentLayerId": 0,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 9999,
+   "maxScale": 6000
+  },
+  {
+   "id": 2,
+   "name": "dlzxxxAnno2000",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    3
+   ],
+   "minScale": 3999,
+   "maxScale": 2000
+  },
+  {
+   "id": 3,
+   "name": "默认",
+   "parentLayerId": 2,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 3999,
+   "maxScale": 2000
+  },
+  {
+   "id": 4,
+   "name": "dlzxxxAnno4000",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    5
+   ],
+   "minScale": 5999,
+   "maxScale": 4000
+  },
+  {
+   "id": 5,
+   "name": "默认",
+   "parentLayerId": 4,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 5999,
+   "maxScale": 4000
+  },
+  {
+   "id": 6,
+   "name": "dlzxxxAnno10000",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    7
+   ],
+   "minScale": 14999,
+   "maxScale": 10000
+  },
+  {
+   "id": 7,
+   "name": "默认",
+   "parentLayerId": 6,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 14999,
+   "maxScale": 1000
+  },
+  {
+   "id": 8,
+   "name": "dlzxxxAnno",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": [
+    1
+   ],
+   "minScale": 16000,
+   "maxScale": 15000
+  },
+  {
+   "id": 1,
+   "name": "默认",
+   "parentLayerId": 8,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 16000,
+   "maxScale": 15000
+  },
+  {
+   "id": 10,
+   "name": "dlzxxx",
+   "parentLayerId": -1,
+   "defaultVisibility": true,
+   "subLayerIds": null,
+   "minScale": 0,
+   "maxScale": 0
+  }
+ ],
+ "tables": [],
+ "spatialReference": {
+  "wkid": 4548,
+  "latestWkid": 4548
+ },
+ "singleFusedMapCache": true,
+ "tileInfo": {
+  "rows": 256,
+  "cols": 256,
+  "dpi": 96,
+  "format": "PNG32",
+  "compressionQuality": 0,
+  "origin": {
+   "x": 450000,
+   "y": 4500000
+  },
+  "spatialReference": {
+   "wkid": 4548,
+   "latestWkid": 4548
+  },
+  "lods": [
+   {
+    "level": 0,
+    "resolution": 66.1459656252646,
+    "scale": 250000
+   },
+   {
+    "level": 1,
+    "resolution": 33.0729828126323,
+    "scale": 125000
+   },
+   {
+    "level": 2,
+    "resolution": 16.933367200067735,
+    "scale": 64000
+   },
+   {
+    "level": 3,
+    "resolution": 8.466683600033868,
+    "scale": 32000
+   },
+   {
+    "level": 4,
+    "resolution": 4.233341800016934,
+    "scale": 16000
+   },
+   {
+    "level": 5,
+    "resolution": 2.116670900008467,
+    "scale": 8000
+   },
+   {
+    "level": 6,
+    "resolution": 1.0583354500042335,
+    "scale": 4000
+   },
+   {
+    "level": 7,
+    "resolution": 0.5291677250021167,
+    "scale": 2000
+   }
+  ]
+ },
+ "initialExtent": {
+  "xmin": 507365.2262385703,
+  "ymin": 4299001.551448664,
+  "xmax": 559390.172672874,
+  "ymax": 4328348.957129553,
+  "spatialReference": {
+   "wkid": 4548,
+   "latestWkid": 4548
+  }
+ },
+ "fullExtent": {
+  "xmin": 518790.43940046,
+  "ymin": 4300335.524434159,
+  "xmax": 547964.9595109841,
+  "ymax": 4327014.984144058,
+  "spatialReference": {
+   "wkid": 4548,
+   "latestWkid": 4548
+  }
+ },
+ "minScale": 250000,
+ "maxScale": 2000,
+ "units": "esriMeters",
+ "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+ "documentInfo": {
+  "Title": "",
+  "Author": "",
+  "Comments": "",
+  "Subject": "",
+  "Category": "",
+  "AntialiasingMode": "None",
+  "TextAntialiasingMode": "Force",
+  "Keywords": ""
+ },
+ "capabilities": "Map,Query,Data",
+ "supportedQueryFormats": "JSON, AMF, geoJSON",
+ "exportTilesAllowed": false,
+ "maxRecordCount": 1000,
+ "maxImageHeight": 4096,
+ "maxImageWidth": 4096,
+ "tileServers": "",
+ "supportedExtensions": "KmlServer"
+}
+    '''
     return jsonify(json.loads(info))
 
 
@@ -39,7 +792,312 @@ def get_yjgkq_mapserver():
 
 @ tile.route('/JN/JNDY/MapServer/')
 def get_dy_mapserver():
-    info = '{"currentVersion":10.4,"serviceDescription":"","mapName":"图层","description":"","copyrightText":"","supportsDynamicLayers":false,"layers":[{"id":0,"name":"dl","parentLayerId":-1,"defaultVisibility":true,"subLayerIds":null,"minScale":0,"maxScale":0}],"tables":[],"spatialReference":{"wkid":32650,"latestWkid":32650},"singleFusedMapCache":true,"tileInfo":{"rows":256,"cols":256,"dpi":96,"format":"PNG32","compressionQuality":0,"origin":{"x":0,"y":480000},"spatialReference":{"wkid":32650,"latestWkid":32650},"lods":[{"level":0,"resolution":132.2919312505292,"scale":500000.00000000006},{"level":1,"resolution":66.1459656252646,"scale":250000.00000000003},{"level":2,"resolution":33.0729828126323,"scale":125000.00000000001},{"level":3,"resolution":16.933367200067735,"scale":64000},{"level":4,"resolution":8.466683600033868,"scale":32000},{"level":5,"resolution":4.233341800016934,"scale":16000},{"level":6,"resolution":2.116670900008467,"scale":8000},{"level":7,"resolution":1.0583354500042335,"scale":4000},{"level":8,"resolution":0.5291677250021167,"scale":2000}]},"initialExtent":{"xmin":107657.07015630748,"ymin":281432.208071329,"xmax":120224.80362510774,"ymax":286379.9263000988,"spatialReference":{"wkid":32650,"latestWkid":32650}},"fullExtent":{"xmin":104871.83910823558,"ymin":270394.10159529134,"xmax":130868.15409079017,"ymax":293932.2971931844,"spatialReference":{"wkid":32650,"latestWkid":32650}},"minScale":500000.00000000006,"maxScale":2000,"units":"esriMeters","supportedImageFormatTypes":"PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP","documentInfo":{"Title":"","Author":"","Comments":"","Subject":"","Category":"","AntialiasingMode":"Best","TextAntialiasingMode":"None","Keywords":""},"capabilities":"Map,Query,Data","supportedQueryFormats":"JSON, AMF, geoJSON","exportTilesAllowed":false,"maxRecordCount":1000,"maxImageHeight":4096,"maxImageWidth":4096,"tileServers":"","supportedExtensions":"KmlServer"}'
+    info = '''
+        {
+     "currentVersion": 10.4,
+     "serviceDescription": "",
+     "mapName": "图层",
+     "description": "",
+     "copyrightText": "",
+     "supportsDynamicLayers": false,
+     "layers": [
+      {
+       "id": 0,
+       "name": "单元64000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        1
+       ],
+       "minScale": 64000,
+       "maxScale": 50001
+      },
+      {
+       "id": 1,
+       "name": "默认",
+       "parentLayerId": 0,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 2,
+       "name": "单元50000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        3
+       ],
+       "minScale": 50000,
+       "maxScale": 40001
+      },
+      {
+       "id": 3,
+       "name": "默认",
+       "parentLayerId": 2,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 4,
+       "name": "单元40000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        5
+       ],
+       "minScale": 40000,
+       "maxScale": 30001
+      },
+      {
+       "id": 5,
+       "name": "默认",
+       "parentLayerId": 4,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 6,
+       "name": "单元30000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        7
+       ],
+       "minScale": 30000,
+       "maxScale": 20001
+      },
+      {
+       "id": 7,
+       "name": "默认",
+       "parentLayerId": 6,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 8,
+       "name": "单元20000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        9
+       ],
+       "minScale": 20000,
+       "maxScale": 15001
+      },
+      {
+       "id": 9,
+       "name": "默认",
+       "parentLayerId": 8,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 10,
+       "name": "单元15000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        11
+       ],
+       "minScale": 15000,
+       "maxScale": 12500
+      },
+      {
+       "id": 11,
+       "name": "默认",
+       "parentLayerId": 10,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 12,
+       "name": "单元8000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        13
+       ],
+       "minScale": 12499,
+       "maxScale": 8000
+      },
+      {
+       "id": 13,
+       "name": "默认",
+       "parentLayerId": 12,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 14,
+       "name": "单元4000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        15
+       ],
+       "minScale": 7999,
+       "maxScale": 4000
+      },
+      {
+       "id": 15,
+       "name": "默认",
+       "parentLayerId": 14,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 16,
+       "name": "单元2000a",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": [
+        17
+       ],
+       "minScale": 3999,
+       "maxScale": 2000
+      },
+      {
+       "id": 17,
+       "name": "默认",
+       "parentLayerId": 16,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      },
+      {
+       "id": 18,
+       "name": "danyuan",
+       "parentLayerId": -1,
+       "defaultVisibility": true,
+       "subLayerIds": null,
+       "minScale": 0,
+       "maxScale": 0
+      }
+     ],
+     "tables": [],
+     "spatialReference": {
+      "wkid": 4548,
+      "latestWkid": 4548
+     },
+     "singleFusedMapCache": true,
+     "tileInfo": {
+      "rows": 256,
+      "cols": 256,
+      "dpi": 96,
+      "format": "PNG32",
+      "compressionQuality": 0,
+      "origin": {
+       "x": 450000,
+       "y": 4500000
+      },
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      },
+      "lods": [
+       {
+        "level": 0,
+        "resolution": 66.1459656252646,
+        "scale": 250000
+       },
+       {
+        "level": 1,
+        "resolution": 33.0729828126323,
+        "scale": 125000
+       },
+       {
+        "level": 2,
+        "resolution": 16.933367200067735,
+        "scale": 64000
+       },
+       {
+        "level": 3,
+        "resolution": 8.466683600033868,
+        "scale": 32000
+       },
+       {
+        "level": 4,
+        "resolution": 4.233341800016934,
+        "scale": 16000
+       },
+       {
+        "level": 5,
+        "resolution": 2.116670900008467,
+        "scale": 8000
+       },
+       {
+        "level": 6,
+        "resolution": 1.0583354500042335,
+        "scale": 4000
+       },
+       {
+        "level": 7,
+        "resolution": 0.5291677250021167,
+        "scale": 2000
+       }
+      ]
+     },
+     "initialExtent": {
+      "xmin": 520671.5087199431,
+      "ymin": 4301696.251329236,
+      "xmax": 549276.2030060204,
+      "ymax": 4327564.713575879,
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      }
+     },
+     "fullExtent": {
+      "xmin": 521971.722096583,
+      "ymin": 4302872.090522265,
+      "xmax": 547975.9896293805,
+      "ymax": 4326388.87438285,
+      "spatialReference": {
+       "wkid": 4548,
+       "latestWkid": 4548
+      }
+     },
+     "minScale": 250000,
+     "maxScale": 2000,
+     "units": "esriMeters",
+     "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+     "documentInfo": {
+      "Title": "",
+      "Author": "",
+      "Comments": "",
+      "Subject": "",
+      "Category": "",
+      "AntialiasingMode": "None",
+      "TextAntialiasingMode": "Force",
+      "Keywords": ""
+     },
+     "capabilities": "Map,Query,Data",
+     "supportedQueryFormats": "JSON, AMF, geoJSON",
+     "exportTilesAllowed": false,
+     "maxRecordCount": 1000,
+     "maxImageHeight": 4096,
+     "maxImageWidth": 4096,
+     "tileServers": "",
+     "supportedExtensions": "KmlServer"
+    }
+    '''
     return jsonify(json.loads(info))
 
 
