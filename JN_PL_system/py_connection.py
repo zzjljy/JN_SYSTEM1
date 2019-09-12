@@ -45,6 +45,7 @@ def kg_find_land(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select ST_AsGeoJson(geom) from kg where ssmc like '%s%%' and %s order by gid asc" % \
                       (ssmc, dy_gid_formate)
         elif yddm != '' and ssmc == None:
@@ -62,6 +63,7 @@ def kg_find_land(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select ST_AsGeoJson(geom) from kg where yddm like '%s%%' and %s order by gid asc" % \
                       (yddm, dy_gid_formate)
         else:
@@ -80,6 +82,7 @@ def kg_find_land(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select ST_AsGeoJson(geom) from kg where yddm like '%s%%' and ssmc like '%%%s%%' and %s order by\
                  gid asc" % (yddm, ssmc, dy_gid_formate)
         cur.execute(sql)
@@ -114,6 +117,7 @@ def kg_find_land_download(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select * from kg where ssmc like '%%%s%%' and %s order by gid asc" % (ssmc, dy_gid_formate)
         elif yddm != '' and ssmc == None:
             if dybh == None:
@@ -130,6 +134,7 @@ def kg_find_land_download(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select * from kg where yddm like '%s%%' and %s order by gid asc" % (yddm, dy_gid_formate)
         else:
             if dybh == None:
@@ -145,6 +150,7 @@ def kg_find_land_download(*args):
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item)
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
+                    dy_gid_formate = '(' + dy_gid_formate + ')'
                 sql = "select * from kg where yddm like '%s%%' and ssmc like '%%%s%%' and %s order by gid asc" % (
                 yddm, ssmc, dy_gid_formate)
         cur.execute(sql)

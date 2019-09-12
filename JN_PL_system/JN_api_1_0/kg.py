@@ -77,6 +77,9 @@ def kg_info_download():
             dybh = dybh.split(',')
             data, table_name = py_connection.kg_find_land_download({'ssmc': ssmc, 'dybh': dybh})
         if data != 'ERROR':
+            # pass
+            # path = generate_pdf(table_name, data)
+            # return path
             kg_data, excel_name = data_to_excel(data, table_name)
             return excel.make_response_from_array(kg_data, "xlsx",
                                                   file_name=excel_name)
@@ -128,10 +131,12 @@ def data_to_excel(data, table_name):
     table_name.remove('GEOM')
     kg_data.append(table_name)
     for data_item in data:
+        # print('数据', data_item)
         item_list = []
         for item in data_item:
-            if item != data_item[0] or item != data_item[-3]:
-                item_list.append(item)
+            item_list.append(item)
+        del item_list[0]
+        del item_list[-3]
         kg_data.append(item_list)
     return kg_data, excel_name
 
@@ -210,3 +215,113 @@ def kg_search_land_info(point_x, point_y):
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+
+
+'''
+暂未解决中文乱码问题
+from reportlab.lib.colors import HexColor
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.platypus import SimpleDocTemplate, Table, Frame, PageBreak, Paragraph, LongTable, TableStyle
+from reportlab.lib.units import inch
+from reportlab.lib import colors, fonts
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
+# 增加的字体，支持中文显示,需要自行下载支持中文的字体
+
+# styles.add(ParagraphStyle(fontName='SimSun', name='SimSun', leading=20, fontSize=12))
+# Paragraph('描述', styles['SimSun'])
+
+
+def table_model(table_header, datas):
+    """
+    添加表格
+    :return:
+    """
+    # base = []
+    # del table_header[0], table_header[-3]
+    # base.append(table_header)
+    # for data_row in datas:
+    #     item_row_list = []
+    #     for item in data_row:
+    #         item_row_list.append(item)
+    #     del item_row_list[0], item_row_list[-3]
+    #     base.append(item_row_list)
+    # print(base)
+    pdfmetrics.registerFont(TTFont('SimKai', 'SimSun.ttf'))
+    fonts.addMapping('SimSun', 0, 0, 'SimSun')
+    styles = getSampleStyleSheet()
+    styleN = styles['Normal']
+    # styleN.FONTNAME = 'SimKai'
+    styleN.wordWrap = 'CJK'
+    base = [['年年', '月', '日'],
+                  ['2017126478962255222111111111111111111111111111', '3', '12'],
+                  ['2017', '4', '13'],
+                  ['2017', '5', '14'],
+                  ['2017', '6', '15'],
+                  ['2018', '7', '16'],
+                  ['2018', '8', '17'],
+                  ['2018', '9', '18'],
+                  ['2018', '10', '19'],
+                  ]
+
+    style = [
+        # 设置字体
+        # (列,行)
+        ('FONTNAME', (0, 0), (-1, -1), 'SimSun'),
+
+        # 字体颜色
+        ('BACKGROUND', (0, 0), (-1, 0), HexColor('#548DD4')),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        # 对齐设置
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+
+        # 单元格框线
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+        ('BOX', (0, 0), (-1, -1), 0.5, colors.black),
+        ('WordWrap', (0, 0), (-1, -1), True)
+
+    ]
+    base2 = [[Paragraph(cell, styleN) for cell in row] for row in base]
+    # frame = Frame(10, 10, 420, 590, id='normal')
+    # colwidths = [frame._width/3. for i in range(3)]
+    component_table = Table(base2, colWidths=[140, 38, 147], style=style)
+    return component_table
+
+
+def generate_pdf(table_header, datas):
+    """
+    生成pdf
+    :return:
+    """
+    path = "test.pdf"
+    data = list()
+    # 添加table
+    table = table_model(table_header, datas)
+    data.append(table)
+    data.append(PageBreak())  # 分页标识
+    # 设置生成pdf的名字和编剧
+    pdf = SimpleDocTemplate(path, rightMargin=0, leftMargin=0, topMargin=0, bottomMargin=0, )
+    # 设置pdf每页的大小
+    pdf.pagesize = (16 * inch, 16 * inch)
+
+    pdf.multiBuild(data)
+
+    # buff.seek(0)
+    # return buff
+    return path
+
+
+@kg.route('/testPDF', methods=["GET"])
+def test_pdf():
+    """
+    测试输出pdf
+    :return:
+    """
+    path = generate_pdf(1,1)
+    # return send_file(path, attachment_filename='test.pdf', as_attachment=True)
+    return path
+'''
+
+
