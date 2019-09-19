@@ -46,7 +46,7 @@ def kg_find_land(*args):
                         else:
                             dy_gid_formate += 'dy_gid' + '=' + str(dy_gid_item) + ' ' + 'or' + ' '
                     dy_gid_formate = '(' + dy_gid_formate + ')'
-                sql = "select ST_AsGeoJson(geom) from kg where ssmc like '%s%%' and %s order by gid asc" % \
+                sql = "select ST_AsGeoJson(geom) from kg where ssmc like '%%%s%%' and %s order by gid asc" % \
                       (ssmc, dy_gid_formate)
         elif yddm != '' and ssmc == None:
             if dybh == None:
@@ -480,6 +480,53 @@ def dl_search_road_info(*args):
     coon.close()
     # print(finally_result)
     return finally_result
+
+
+def dl_mileage_statistics(polygon):
+    '''
+    划分区域根据道路等级进行里程统计
+    :param polygon:
+    :return:
+    '''
+    dldj1 = {'dldj': '校际联络线', 'value': 0}
+    dldj2 = {'dldj': '城市次干路', 'value': 0}
+    dldj3 = {'dldj': '城市主干路', 'value': 0}
+    dldj4 = {'dldj': '高速公路', 'value': 0}
+    dldj5 = {'dldj': '城市快速路', 'value': 0}
+    dldj6 = {'dldj': '其他道路', 'value': 0}
+    dldj7 = {'dldj': '支路', 'value': 0}
+
+    polygon = polygon
+    # polygon = '540953.7657214508 4316693.095150218,540953.7657214508 4316462.801252944,541553.2070753628 4316462.801252944,\
+    # 541553.2070753628 4316693.095150218,540953.7657214508 4316693.095150218'
+    coon, cur = db_connection()
+    try:
+        sql = "select dldj, ST_Length(ST_Intersection(GeomFromEWKT('SRID=4548;POLYGON((%s))'), geom)) from public.dl" % polygon
+        cur.execute(sql)
+        results = cur.fetchall()
+        for item in results:
+            if item[-1] > 0:
+                if item[0] in dldj1.get('dldj'):
+                    dldj1['value'] += item[-1]
+                elif item[0] in dldj2.get('dldj'):
+                    dldj2['value'] += item[-1]
+                elif item[0] in dldj3.get('dldj'):
+                    dldj3['value'] += item[-1]
+                elif item[0] in dldj4.get('dldj'):
+                    dldj4['value'] += item[-1]
+                elif item[0] in dldj5.get('dldj'):
+                    dldj5['value'] += item[-1]
+                elif item[0] in dldj6.get('dldj'):
+                    dldj6['value'] += item[-1]
+                else:
+                    dldj7['value'] += item[-1]
+        dldj_measure = [dldj1, dldj2, dldj3, dldj4, dldj5, dldj6, dldj7]
+    except Exception as e:
+        print('查询失败%s' % e)
+        dldj_measure == 'ERROR'
+    cur.close()
+    coon.close()
+    return dldj_measure
 
 
 def kg_plot_way(gid):
@@ -1003,5 +1050,6 @@ if __name__ == '__main__':
     # s, x = kg_find_land_download({'yddm': 'U'})
     # s = xxg_find_centroid('')
     # s = kg_find_jzmd('10')
-    s = kg_find_land({'ssmc': 'U', 'dybh': [1, 2, 3]})
+    # s = kg_find_land({'ssmc': 'U', 'dybh': [1, 2, 3]})
+    s = dl_mileage_statistics(1)
     print(s)

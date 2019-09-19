@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, send_file
+from flask import Blueprint, request, jsonify, make_response, send_file, redirect, url_for
 from .. import py_connection
 from JN_PL_system.utils.response_code import RET
 import json
@@ -34,7 +34,7 @@ def kg_info_find():
             return jsonify({'error': '查询错误'})
     elif yddm != '' and ssmc == None:
         if dybh == None:
-            print('无地块编号的用地代码')
+            print('无地块编号的用地代码查询')
             data = py_connection.kg_find_land({'yddm': yddm})
         else:
             # 加入单元编号后查询
@@ -72,29 +72,54 @@ def kg_info_download():
     dybh = request.args.get('dybh')
     if yddm == None and ssmc != '':
         if dybh == None:
+            print(11111111111)
             data, table_name = py_connection.kg_find_land_download({'ssmc': ssmc})
         else:
             dybh = dybh.split(',')
             data, table_name = py_connection.kg_find_land_download({'ssmc': ssmc, 'dybh': dybh})
         if data != 'ERROR':
             # pass
+            # pdf
             # path = generate_pdf(table_name, data)
             # return path
-            kg_data, excel_name = data_to_excel(data, table_name)
-            return excel.make_response_from_array(kg_data, "xlsx",
-                                                  file_name=excel_name)
+            # excel
+            # kg_data, excel_name = data_to_excel(data, table_name)
+            # return excel.make_response_from_array(kg_data, "xlsx",
+            #                                       file_name=excel_name)
+            # 图片
+            im_new = image(table_name, data)
+            from io import BytesIO
+            buf = BytesIO()
+            im_new.save(buf, 'PNG')
+            buf_str = buf.getvalue()
+            response = make_response(buf_str)
+            response.headers['Content-Type'] = 'image/png'
+            return response
+            # return redirect(url_for('kg.image', table_header=table_name, datas=data))
         else:
             return jsonify({'error': '查询错误'})
     elif yddm != '' and ssmc == None:
         if dybh == None:
+            print('无单元编号的用地代码下载')
             data, table_name = py_connection.kg_find_land_download({'yddm': yddm})
         else:
             dybh = dybh.split(',')
             data, table_name = py_connection.kg_find_land_download({'yddm': yddm, 'dybh': dybh})
         if data != 'ERROR':
-            kg_data, excel_name = data_to_excel(data, table_name)
-            return excel.make_response_from_array(kg_data, "xlsx",
-                                                  file_name=excel_name)
+            # path = generate_pdf(table_name, data)
+            # return path
+            im_new = image(table_name, data)
+            from io import BytesIO
+            buf = BytesIO()
+            im_new.save(buf, 'PNG')
+            buf_str = buf.getvalue()
+            response = make_response(buf_str)
+            response.headers['Content-Type'] = 'image/png'
+            return response
+            # return redirect(url_for('kg.image', table_header=table_name, datas=data))
+            # kg_data, excel_name = data_to_excel(data, table_name)
+            # return excel.make_response_from_array(kg_data, "xlsx",
+            #                                       file_name=excel_name)
         else:
             return jsonify({'error': '查询错误'})
     elif yddm != '' and ssmc != '':
@@ -105,9 +130,20 @@ def kg_info_download():
             data, table_name = py_connection.kg_find_land_download({'yddm': yddm, 'ssmc': ssmc, 'dybh': dybh})
         if data != 'ERROR':
             if len(data) != 0:
-                kg_data, excel_name = data_to_excel(data, table_name)
-                return excel.make_response_from_array(kg_data, "xlsx",
-                                                  file_name=excel_name)
+                # path = generate_pdf(table_name, data)
+                # return path
+                im_new = image(table_name, data)
+                from io import BytesIO
+                buf = BytesIO()
+                im_new.save(buf, 'PNG')
+                buf_str = buf.getvalue()
+                response = make_response(buf_str)
+                response.headers['Content-Type'] = 'image/png'
+                return response
+                # return redirect(url_for('kg.image', table_header=table_name, datas=data))
+                # kg_data, excel_name = data_to_excel(data, table_name)
+                # return excel.make_response_from_array(kg_data, "xlsx",
+                #                                   file_name=excel_name)
             else:
                 return jsonify({'error': '没有查询到符合条件的数据'})
         else:
@@ -122,8 +158,6 @@ def data_to_excel(data, table_name):
     :param data:
     :return:
     '''
-    # today = datetime.today()
-    # today_date = datetime.date(today)
     ran_str = ''.join(random.sample(string.digits, 10))
     excel_name = '控规-' + ran_str
     kg_data = []
@@ -131,7 +165,6 @@ def data_to_excel(data, table_name):
     table_name.remove('GEOM')
     kg_data.append(table_name)
     for data_item in data:
-        # print('数据', data_item)
         item_list = []
         for item in data_item:
             item_list.append(item)
@@ -217,8 +250,8 @@ def kg_search_land_info(point_x, point_y):
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
 
 
-'''
-暂未解决中文乱码问题
+
+#暂未解决中文乱码问题
 from reportlab.lib.colors import HexColor
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Table, Frame, PageBreak, Paragraph, LongTable, TableStyle
@@ -238,47 +271,42 @@ def table_model(table_header, datas):
     添加表格
     :return:
     """
-    # base = []
-    # del table_header[0], table_header[-3]
-    # base.append(table_header)
-    # for data_row in datas:
-    #     item_row_list = []
-    #     for item in data_row:
-    #         item_row_list.append(item)
-    #     del item_row_list[0], item_row_list[-3]
-    #     base.append(item_row_list)
+    base = []
+    del table_header[0], table_header[-3], table_header[-1]
+    base.append(table_header)
+    for data_row in datas:
+        item_row_list = []
+        for item in data_row:
+            item_row_list.append(str(item))
+        del item_row_list[0], item_row_list[-3], item_row_list[-1]
+        base.append(item_row_list)
     # print(base)
-    pdfmetrics.registerFont(TTFont('SimKai', 'SimSun.ttf'))
-    fonts.addMapping('SimSun', 0, 0, 'SimSun')
+    pdfmetrics.registerFont(TTFont('SimSun', 'SimSun.ttf'))
+    # fonts.addMapping('SimSun', 0, 0, 'SimSun')
     styles = getSampleStyleSheet()
-    styleN = styles['Normal']
-    # styleN.FONTNAME = 'SimKai'
-    styleN.wordWrap = 'CJK'
-    base = [['年年', '月', '日'],
-                  ['2017126478962255222111111111111111111111111111', '3', '12'],
-                  ['2017', '4', '13'],
-                  ['2017', '5', '14'],
-                  ['2017', '6', '15'],
-                  ['2018', '7', '16'],
-                  ['2018', '8', '17'],
-                  ['2018', '9', '18'],
-                  ['2018', '10', '19'],
-                  ]
+    styles.add(ParagraphStyle(fontName='SimSun', name='SimSun', leading=20, fontSize=12))
+    styleN = styles['SimSun']
+    # styleN.wordWrap = 'CJK'
+    # base = [['gid', 'objectid', 'dkbh', 'yddm', 'ydxz', 'ydmj', 'rjl', 'jzxg', 'jzmd', 'ldl', 'ssmc'],
+    #               ['1', '1', '01-37', 'C3', '文化娱乐用地', '34567.9', '1.1', '/', '', '35', '厕所1处'],
+    #               ]
 
     style = [
         # 设置字体
         # (列,行)
-        ('FONTNAME', (0, 0), (-1, -1), 'SimSun'),
+        ('fontName', (0, 0), (-1, -1), 'SimSun'),
 
         # 字体颜色
         ('BACKGROUND', (0, 0), (-1, 0), HexColor('#548DD4')),
-        ('TEXTCOLOR', (0, 1), (-1, -1), colors.black),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.antiquewhite),
         # 对齐设置
         ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
 
         # 单元格框线
+        # 表格内部线的颜色
         ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+        # 表格四个框线的颜色
         ('BOX', (0, 0), (-1, -1), 0.5, colors.black),
         ('WordWrap', (0, 0), (-1, -1), True)
 
@@ -286,7 +314,8 @@ def table_model(table_header, datas):
     base2 = [[Paragraph(cell, styleN) for cell in row] for row in base]
     # frame = Frame(10, 10, 420, 590, id='normal')
     # colwidths = [frame._width/3. for i in range(3)]
-    component_table = Table(base2, colWidths=[140, 38, 147], style=style)
+    component_table = Table(base2, colWidths=[70, 43, 38, 120, 80, 38, 38, 38, 38, 80, 70, 70, 70, 70, 70, 80, 100, 100, \
+                                              130], style=style)
     return component_table
 
 
@@ -302,9 +331,9 @@ def generate_pdf(table_header, datas):
     data.append(table)
     data.append(PageBreak())  # 分页标识
     # 设置生成pdf的名字和编剧
-    pdf = SimpleDocTemplate(path, rightMargin=0, leftMargin=0, topMargin=0, bottomMargin=0, )
+    pdf = SimpleDocTemplate(path, rightMargin=0, leftMargin=0, topMargin=0, bottomMargin=0)
     # 设置pdf每页的大小
-    pdf.pagesize = (16 * inch, 16 * inch)
+    pdf.pagesize = (20 * inch, 16 * inch)
 
     pdf.multiBuild(data)
 
@@ -319,9 +348,56 @@ def test_pdf():
     测试输出pdf
     :return:
     """
-    path = generate_pdf(1,1)
+    path = generate_pdf(1, 1)
     # return send_file(path, attachment_filename='test.pdf', as_attachment=True)
     return path
-'''
 
+
+# @kg.route('/download/image/<table_header>/<datas>/')
+def image(table_header, datas):
+    from prettytable import PrettyTable
+    from PIL import Image, ImageDraw, ImageFont
+    tab = PrettyTable()
+    # del table_header[0], table_header[-3], table_header[-1]
+    tab.field_names = [table_header[0], table_header[1], table_header[2], table_header[3], table_header[4],\
+                       table_header[5], table_header[6], table_header[7], table_header[8], table_header[9],\
+                       table_header[-5], table_header[-4], table_header[-2], table_header[10], table_header[11],\
+                       table_header[12], table_header[13], table_header[14], table_header[15], table_header[16]]
+    for data_row in datas:
+        item_row_list = []
+        for item in data_row:
+            if item == '/' or item == '—' or item == None:
+                item_row_list.append('/')
+            else:
+                item_row_list.append(str(item).strip())
+        # del item_row_list[0], item_row_list[-3], item_row_list[-1]
+        item_row_list = [item_row_list[0], item_row_list[1], item_row_list[2], item_row_list[3], item_row_list[4],\
+                         item_row_list[5], item_row_list[6], item_row_list[7], item_row_list[8], item_row_list[9],\
+                         item_row_list[-5], item_row_list[-4], item_row_list[-2], item_row_list[10], item_row_list[11],\
+                         item_row_list[12], item_row_list[13], item_row_list[14], item_row_list[15], item_row_list[16]]
+        tab.add_row(item_row_list)
+    tab_info = str(tab)
+    space = 5
+
+    # PIL模块中，确定写入到图片中的文本字体
+    font = ImageFont.truetype(r'D:\new_py_project\JN_PM_system\evne\Lib\site-packages\reportlab\fonts\SimSun.ttf', 15, encoding='utf-8')
+    # Image模块创建一个图片对象
+    im = Image.new('RGB', (10, 10), (0, 0, 0, 0))
+    # ImageDraw向图片中进行操作，写入文字或者插入线条都可以
+    draw = ImageDraw.Draw(im, "RGB")
+    # 根据插入图片中的文字内容和字体信息，来确定图片的最终大小
+    img_size = draw.multiline_textsize(tab_info, font=font)
+    # 图片初始化的大小为10-10，现在根据图片内容要重新设置图片的大小
+    im_new = im.resize((img_size[0] + space * 2, img_size[1] + space * 2))
+    del draw
+    del im
+    draw = ImageDraw.Draw(im_new, 'RGB')
+    # 批量写入到图片中，这里的multiline_text会自动识别换行符
+    # python3
+    draw.multiline_text((space, space), tab_info, fill=(255, 255, 255), font=font)
+    return im_new
+
+    # im_new.save('12345.PNG', "PNG")
+    # del draw
+    # return 'hello world'
 

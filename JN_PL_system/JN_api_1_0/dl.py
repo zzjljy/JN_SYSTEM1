@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, make_response, redirect, url_for
 from .. import py_connection
 from JN_PL_system.utils.response_code import RET
 from ..models import DLHDM_IMG
+import json
 
 dl = Blueprint('dl', __name__)
 
@@ -101,6 +102,49 @@ def kg_plot_way(land_gid):
     try:
         data = py_connection.kg_plot_way(gid)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+    except Exception as e:
+        print(e)
+        return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+
+
+# 道路自定义范围内里程统计
+@dl.route('/JN/JN_DL/dl_mileage_statistics/', methods=['GET'])
+def dldj_measurement():
+    '''
+    道路划区域进行里程统计
+    参数：由点坐标构成的polygon
+    点坐标至少三个不同的点
+    字典形式，{'rings':[[point1],[point2],[point3],....[point1]}
+    :return:
+    '''
+    gkq_data = request.args
+    print('原始数据', gkq_data)
+    for k, v in gkq_data.to_dict().items():
+        data = v
+    rings = json.loads(data)
+    points_list = rings.get('rings')
+    print('polygon', points_list)
+    if not rings:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    if len(points_list) < 4:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    first_points = points_list[0]
+    last_points = points_list[-1]
+    if first_points[0] != last_points[0] or first_points[1] != last_points[1]:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    try:
+        polygon = ''
+        for i in range(len(points_list)):
+            if i == len(points_list)-1:
+                point = '%s %s' % (points_list[i][0], points_list[i][1])
+            else:
+                point = '%s %s,' % (points_list[i][0], points_list[i][1])
+            polygon += point
+        data = py_connection.dl_mileage_statistics(polygon)
+        if data != 'ERROR':
+            return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+        else:
+            return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
     except Exception as e:
         print(e)
         return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
