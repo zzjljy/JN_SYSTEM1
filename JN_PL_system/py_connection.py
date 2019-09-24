@@ -497,8 +497,8 @@ def dl_mileage_statistics(polygon):
     dldj7 = {'dldj': '支路', 'value': 0}
 
     polygon = polygon
-    # polygon = '540953.7657214508 4316693.095150218,540953.7657214508 4316462.801252944,541553.2070753628 4316462.801252944,\
-    # 541553.2070753628 4316693.095150218,540953.7657214508 4316693.095150218'
+    polygon = '540953.7657214508 4316693.095150218,540953.7657214508 4316462.801252944,541553.2070753628 4316462.801252944,\
+    541553.2070753628 4316693.095150218,540953.7657214508 4316693.095150218'
     coon, cur = db_connection()
     try:
         sql = "select dldj, ST_Length(ST_Intersection(GeomFromEWKT('SRID=4548;POLYGON((%s))'), geom)) from public.dl" % polygon
@@ -723,6 +723,56 @@ def gkq_update_info_small(*args):
     return msg
 
 
+def gkq_ranges_conversion(polygon, gids):
+    '''
+    一级管控区框选范围内用地性质，面积查询，前端计算， 不更改数据库
+    :return:
+    '''
+    polygon = polygon
+    coordinates_unio = {}
+    ydxz1 = {'ydxz': '市政设施', 'value': 0}
+    ydxz2 = {'ydxz': '保留村庄', 'value': 0}
+    ydxz3 = {'ydxz': '田', 'value': 0}
+    ydxz4 = {'ydxz': '水', 'value': 0}
+    ydxz5 = {'ydxz': '草', 'value': 0}
+    ydxz6 = {'ydxz': '工业园区', 'value': 0}
+    ydxz7 = {'ydxz': '林', 'value': 0}
+    ydxz8 = {'ydxz': '交通设施', 'value': 0}
+    coon, cur = db_connection()
+    for i in gids:
+        try:
+            sql = "select st_area(st_intersection(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),\
+             (select geom from gkq where gid=%s))), ydxz from gkq where gid = %s" % (polygon, i, i)
+            cur.execute(sql)
+            results = cur.fetchall()
+            for item in results:
+                if item[0] != 0:
+                    print(item, i)
+                    area = item[0]
+                    ydxz = item[2]
+                    if ydxz == ydxz1.get('ydxz'):
+                        ydxz1['value'] += area
+                    elif ydxz == ydxz2.get('ydxz'):
+                        ydxz2['value'] += area
+                    elif ydxz == ydxz3.get('ydxz'):
+                        ydxz3['value'] += area
+                    elif ydxz == ydxz4.get('ydxz'):
+                        ydxz4['value'] += area
+                    elif ydxz == ydxz5.get('ydxz'):
+                        ydxz5['value'] += area
+                    elif ydxz == ydxz6.get('ydxz'):
+                        ydxz6['value'] += area
+                    elif ydxz == ydxz7.get('ydxz'):
+                        ydxz7['value'] += area
+                    else:
+                        ydxz8['value'] += area
+        except Exception as e:
+            print('错误', i, e)
+            coon.rollback()
+    range_area = [ydxz1, ydxz2, ydxz3, ydxz4, ydxz5, ydxz6, ydxz7, ydxz8]
+    return range_area
+
+
 '''--------------管控区框选区域进行地块查询，进行地块转换-----------------'''
 
 
@@ -746,8 +796,30 @@ def gkq_find_info_custom(polygon):
         # print(finally_result)
     except Exception as e:
         print('查询失败%s' % e)
+        # coon.rollback()
+        return finally_results
     cur.close()
     coon.close()
+    data1 = finally_results.get('features')
+    # print(data1)
+    coon, cur = db_connection()
+    for item in data1:
+        # print(item)
+        try:
+            # coon, cur = db_connection()
+            gid = item.get('attributes').get('gid')
+            sql1 = "select st_asgeojson(st_intersection(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),\
+                         (select geom from gkq where gid=%s))),st_area(st_intersection(GeomFromEWKT('SRID=4548;MULTIPOLYGON(((%s)))'),\
+                         (select geom from gkq where gid=%s)))" % (polygon, gid, polygon, gid)
+            cur.execute(sql1)
+            coors = cur.fetchall()
+            for item1 in coors:
+                item['geometry'] = json.loads(item1[0])
+                item['attributes']['shape_area'] = item1[1]
+        except Exception as e:
+            print(1111111111111111111111111111, e)
+            coon.rollback()
+            continue
     return finally_results
 
 
@@ -847,9 +919,12 @@ def sum_of_area():
             percentage_area[k] = v
     except Exception as e:
         print('查询失败%s' % e)
+    # area_dict['total_area'] = area_total
+    area_str_dict = dict((x, str(y)) for x, y in area_dict.items())
+    area_str_dict['total_area'] = str(area_total)
     cur.close()
     coon.close()
-    return percentage_area, area_dict
+    return percentage_area, area_dict, area_str_dict
 
 
 '''---------------单元----------------'''
@@ -1044,12 +1119,16 @@ def xxg_find_centroid(*args):
 '''-------------------------------'''
 
 
+
+
+
 if __name__ == '__main__':
+    pass
     # s = xxg_find_info(524544.891276536, 4320727.24522591)
     # s = kg_find_elements_rjl(4)
     # s, x = kg_find_land_download({'yddm': 'U'})
     # s = xxg_find_centroid('')
     # s = kg_find_jzmd('10')
     # s = kg_find_land({'ssmc': 'U', 'dybh': [1, 2, 3]})
-    s = dl_mileage_statistics(1)
+    s = gkq_ranges_conversion('524061.2506000038 4311041.072566434,524471.0380345689 4311041.072566434,524471.0380345689 4310790.458680196,524061.2506000038 4310790.458680196,524061.2506000038 4311041.072566434', 1)
     print(s)

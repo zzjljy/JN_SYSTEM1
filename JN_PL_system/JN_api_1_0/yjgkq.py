@@ -154,9 +154,10 @@ def gkq_area_search():
     :return:
     '''
     try:
-        data, item_area = py_connection.sum_of_area()
+        data, item_area1, item_area = py_connection.sum_of_area()
         print(data)
-        return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+        print(item_area)
+        return jsonify(errorno=RET.OK, errmsg='成功', data=data, item_area=item_area)
     except Exception as e:
         print(e)
         current_app.logger.error(e)
@@ -167,7 +168,8 @@ def gkq_area_search():
 @gkq.route('/JN/JN_GKQ/gkq_find_info_custom/', methods=['GET'])
 def gkq_find_info_custom():
     '''
-    一级管控区自定义转换，框选区域进行转换
+    一级管控区自定义转换，框选区域进行转换,返回相交的区域的信息
+    相交的区域都转换
     参数：由点坐标构成的polygon
     点坐标至少三个不同的点
     字典形式，{'rings':[[point1],[point2],[point3],....[point1]}
@@ -195,11 +197,49 @@ def gkq_find_info_custom():
             else:
                 point = '%s %s,' % (points_list[i][0], points_list[i][1])
             polygon += point
-        # print('-----------------------')
-        # print(type(polygon), polygon)
-        # print('-----------------------------')
         data = py_connection.gkq_find_info_custom(polygon)
         # print('数据', data)
+        return jsonify(errorno=RET.OK, errmsg='成功', data=data)
+    except Exception as e:
+        print(e)
+        return jsonify(errorno=RET.DBERR, errmsg='查询数据库错误')
+
+
+@gkq.route('/JN/JN_GKQ/gkq_find_area_ranges/', methods=['GET'])
+def find_area_ranges():
+    '''
+    一级管控区自定义转换，框选区域进行转换
+    求相交区域的area和用地性质
+    参数：由点坐标构成的polygon
+    点坐标至少三个不同的点
+    字典形式，{'rings':[[point1],[point2],[point3],....[point1]], 'gids':[gid1,gid2]}
+    :return:
+    '''
+    gkq_data = request.args
+    print(gkq_data)
+    for k, v in gkq_data.to_dict().items():
+        data = v
+    rings = json.loads(data)
+    print(111111111111111111111111111111, rings)
+    points_list = rings.get('rings')
+    gids = rings.get('gids')
+    if not rings:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    if len(points_list) < 4:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    first_points = points_list[0]
+    last_points = points_list[-1]
+    if first_points[0] != last_points[0] or first_points[1] != last_points[1]:
+        return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
+    try:
+        polygon = ''
+        for i in range(len(points_list)):
+            if i == len(points_list)-1:
+                point = '%s %s' % (points_list[i][0], points_list[i][1])
+            else:
+                point = '%s %s,' % (points_list[i][0], points_list[i][1])
+            polygon += point
+        data = py_connection.gkq_ranges_conversion(polygon, gids)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -242,6 +282,7 @@ def gkq_custom_transformation_big():
 @gkq.route('/JN/JN_GKQ/gkq_custom_convert_small/', methods=['PUT', 'GET'])
 def gkq_custom_transformation_small():
     '''
+    用
     一级管控区自定义小类别转换
     json类型数据(修改并保存)
             gid:列表类型
@@ -306,7 +347,7 @@ def gkq_custom_transformation_small():
         else:
             return jsonify(errorno=RET.PARAMERR, errmsg='参数错误')
         total_area = 0
-        item_area_percentage, item_area_dict = py_connection.sum_of_area()
+        item_area_percentage, item_area_dict, item_area1 = py_connection.sum_of_area()
         for k, v in item_area_dict.items():
             total_area += v
         for item_data in meta_datas:
