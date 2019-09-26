@@ -497,8 +497,8 @@ def dl_mileage_statistics(polygon):
     dldj7 = {'dldj': '支路', 'value': 0}
 
     polygon = polygon
-    polygon = '540953.7657214508 4316693.095150218,540953.7657214508 4316462.801252944,541553.2070753628 4316462.801252944,\
-    541553.2070753628 4316693.095150218,540953.7657214508 4316693.095150218'
+    # polygon = '540953.7657214508 4316693.095150218,540953.7657214508 4316462.801252944,541553.2070753628 4316462.801252944,\
+    # 541553.2070753628 4316693.095150218,540953.7657214508 4316693.095150218'
     coon, cur = db_connection()
     try:
         sql = "select dldj, ST_Length(ST_Intersection(GeomFromEWKT('SRID=4548;POLYGON((%s))'), geom)) from public.dl" % polygon
@@ -726,6 +726,7 @@ def gkq_update_info_small(*args):
 def gkq_ranges_conversion(polygon, gids):
     '''
     一级管控区框选范围内用地性质，面积查询，前端计算， 不更改数据库
+    暂时不用
     :return:
     '''
     polygon = polygon
@@ -768,6 +769,7 @@ def gkq_ranges_conversion(polygon, gids):
                         ydxz8['value'] += area
         except Exception as e:
             print('错误', i, e)
+            # input(11111111111111111)
             coon.rollback()
     range_area = [ydxz1, ydxz2, ydxz3, ydxz4, ydxz5, ydxz6, ydxz7, ydxz8]
     return range_area
@@ -781,6 +783,7 @@ def gkq_find_info_custom(polygon):
     一级管控区自定义转换
     框选区域进行相交查询，将得到的结果返回
     如果就两个点，则用四个点构成有个polygon
+    返回的是框选区域与一级管控区相交区域的区域点坐标以及相交各部分的面积
     :param args:
     :return:
     '''
@@ -817,7 +820,7 @@ def gkq_find_info_custom(polygon):
                 item['geometry'] = json.loads(item1[0])
                 item['attributes']['shape_area'] = item1[1]
         except Exception as e:
-            print(1111111111111111111111111111, e)
+            print(e)
             coon.rollback()
             continue
     return finally_results

@@ -198,7 +198,7 @@ def gkq_find_info_custom():
                 point = '%s %s,' % (points_list[i][0], points_list[i][1])
             polygon += point
         data = py_connection.gkq_find_info_custom(polygon)
-        # print('数据', data)
+        print('数据', data)
         return jsonify(errorno=RET.OK, errmsg='成功', data=data)
     except Exception as e:
         print(e)
@@ -208,6 +208,7 @@ def gkq_find_info_custom():
 @gkq.route('/JN/JN_GKQ/gkq_find_area_ranges/', methods=['GET'])
 def find_area_ranges():
     '''
+    暂时不用
     一级管控区自定义转换，框选区域进行转换
     求相交区域的area和用地性质
     参数：由点坐标构成的polygon
@@ -220,7 +221,6 @@ def find_area_ranges():
     for k, v in gkq_data.to_dict().items():
         data = v
     rings = json.loads(data)
-    print(111111111111111111111111111111, rings)
     points_list = rings.get('rings')
     gids = rings.get('gids')
     if not rings:
